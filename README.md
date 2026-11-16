@@ -125,10 +125,15 @@ The released WSymBERT scripts differ from the paper's equations in a few places.
   score on the 3.0 rows.
 * `combine/Dataset/final.zip` in the same repo is **byte-identical** (same MD5) to the NVD file, so it is not a
   separate dataset. ThreatWeigh uses one dataset and makes no claim about a "Combine" experiment.
-* Preprocessing (`python -m src.data`): drop empty text, then strict de-duplication on lower-cased, whitespace-collapsed
-  text (80 removed, 17 of them with conflicting labels). That leaves **137,441 rows**. Then a stratified 80/10/10 split on AV
-  with seed 42: **train 109,951 / val 13,745 / test 13,745**. A time-aware split by CVE ID year:
-  train ≤ 2021 (90,278), val 2022 (21,821), test ≥ 2023 (25,342).
+* **Label leakage removed.** 9,199 descriptions (6.7%), mostly Oracle advisories, contain the answer, e.g.
+  *"CVSS 3.1 Base Score 7.5 (Integrity impacts). CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N)."*
+  On these rows any model can read the labels straight off the input. `src/data.py` strips such score and vector
+  sentences before anything else, and `tests/test_data.py` checks that no vector remains in any split.
+  This differs from the original dataset, so results are not directly comparable to models trained on the raw text.
+* Preprocessing (`python -m src.data`): strip the leaked CVSS text, drop empty text, then strict de-duplication on
+  lower-cased, whitespace-collapsed text (91 removed). That leaves **137,430 rows**. Then a stratified 80/10/10 split on AV
+  with seed 42: **train 109,943 / val 13,744 / test 13,743**. A time-aware split by CVE ID year:
+  train ≤ 2021 (90,267), val 2022 (21,821), test ≥ 2023 (25,342).
 
 Label distribution of the training split (full table: `results/label_distribution.csv`). Note the heavy imbalance:
 
@@ -189,8 +194,9 @@ per-epoch histories and `run.json`. With `--save-model`, it also writes the weig
 The results were produced on a machine with **no GPU (4 CPU cores, 15 GB RAM)**. Training 8 models × many variants ×
 3 seeds on all 110k training rows for 15 epochs was not feasible there, so the reported runs use the `budget` profile:
 
-* the **same** 6,000-row stratified training subsample for every model (drawn once with seed 42)
-* a 1,500-row validation subsample for model selection, up to 4 epochs, early-stopping patience 2
+* the **same** 4,000-row stratified training subsample for every model (drawn once with seed 42)
+* a 1,000-row validation subsample for model selection, up to 3 epochs, early-stopping patience 2
+* length-bucketed batches (texts of similar length are batched together; ~1.8× faster on CPU, same model and loss)
 * the **full 13,745-row test split** for every reported number
 * the same learning rate (2e-5) and batch size (16) as the paper
 
@@ -203,9 +209,9 @@ Coverage is the % of descriptions with at least one cue match. The paper reports
 
 | Metric | AV | AC | PR | UI | S | C | I | A | **Any** |
 |---|---|---|---|---|---|---|---|---|---|
-| cues | 94 | 29 | 66 | 54 | 21 | 64 | 55 | 48 | 431 |
-| coverage % (13,745 test CVEs) | 57.6 | 6.2 | 39.9 | 38.3 | 20.7 | 58.7 | 59.8 | 48.8 | **89.1** |
-| coverage % (random 2,000) | 58.6 | 6.0 | 39.4 | 40.6 | 22.0 | 58.7 | 60.5 | 48.4 | **89.0** |
+| cues | 94 | 29 | 68 | 54 | 20 | 64 | 55 | 47 | 431 |
+| coverage % (13,743 test CVEs) | 58.0 | 6.3 | 39.5 | 38.0 | 20.1 | 58.2 | 59.6 | 48.4 | **88.9** |
+| coverage % (random 2,000) | 60.3 | 5.5 | 39.3 | 37.5 | 19.8 | 57.8 | 59.2 | 47.8 | **89.9** |
 
 The lift filter cannot keep cues for very frequent labels. AC:L is 94% of training rows, so its lift can be at most ≈1.06,
 and it kept no cues. S:U kept only 3. The lexicon is informative mainly for the minority labels.

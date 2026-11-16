@@ -204,11 +204,109 @@ def to_markdown(df: pd.DataFrame) -> str:
     return "\n".join(lines)
 
 
+# ---------------------------------------------------------------------------
+# Figures (static PNGs for the README and the app)
+# ---------------------------------------------------------------------------
+SERIES = ["#2a78d6", "#eb6834", "#1baf7a", "#eda100"]      # categorical slots 1-4, fixed order
+INK, INK2, GRID, SURFACE = "#0b0b0b", "#52514e", "#e4e3df", "#fcfcfb"
+
+
+def _style(ax):
+    ax.set_facecolor(SURFACE)
+    for side in ("top", "right", "left"):
+        ax.spines[side].set_visible(False)
+    ax.spines["bottom"].set_color(GRID)
+    ax.tick_params(colors=INK2, length=0)
+    ax.grid(axis="x", color=GRID, linewidth=0.8)
+    ax.set_axisbelow(True)
+
+
+def make_figures(agg: pd.DataFrame, cfg, sfx: str) -> None:
+    import matplotlib
+
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    res = project_path(cfg["paths"]["results_dir"])
+    g = agg.set_index("group")
+    # 1. per-metric accuracy dot plot, one row per metric, one colour per model
+    models = [(f"tfidf-lr_{sfx}", "TF-IDF + LogReg"), (f"cls_distilbert-base-uncased_{sfx}", "DistilBERT"),
+              (f"mean_all-MiniLM-L6-v2_{sfx}", "SBERT (mean pooling)"),
+              (f"full_all-MiniLM-L6-v2_{sfx}", "ThreatWeigh")]
+    models = [(k, n, c) for (k, n), c in zip(models, SERIES) if k in g.index]
+    if models:
+        fig, ax = plt.subplots(figsize=(8, 4.6), dpi=150, facecolor=SURFACE)
+        _style(ax)
+        ys = np.arange(len(METRICS))[::-1]
+        offs = np.linspace(-0.24, 0.24, len(models)) if len(models) > 1 else [0]
+        for (k, name, col), off in zip(models, offs):
+            xs = [100 * g.loc[k, f"acc_{m.upper()}_mean"] for m in METRICS]
+            err = [100 * np.nan_to_num(g.loc[k, f"acc_{m.upper()}_std"]) for m in METRICS]
+            ax.errorbar(xs, ys + off, xerr=err, fmt="o", ms=6, color=col, ecolor=col, elinewidth=1.5,
+                        capsize=0, markeredgecolor=SURFACE, markeredgewidth=1.2,
+                        label=f"{name}  (mean {100 * g.loc[k, 'mean_accuracy_mean']:.1f}%)")
+        ax.set_yticks(ys, [m.upper() for m in METRICS], color=INK)
+        ax.set_xlabel("Test accuracy (%)", color=INK2)
+        ax.set_title("Per-metric test accuracy (13.7k test CVEs; bars = ±1 std over seeds)",
+                     color=INK, loc="left", fontsize=11)
+        ax.legend(frameon=False, fontsize=8.5, loc="lower left", labelcolor=INK)
+        fig.tight_layout()
+        fig.savefig(res / "fig_main_accuracy.png", facecolor=SURFACE)
+        plt.close(fig)
+    # 2. ablation + weight sensitivity (single series each)
+    abl = [(f"mean_all-MiniLM-L6-v2_{sfx}", "SBERT mean pooling"),
+           (f"alpha_only_all-MiniLM-L6-v2_{sfx}", "(a) learned α only"),
+           (f"alpha_expert_all-MiniLM-L6-v2_{sfx}", "(b) α + expert lexicon"),
+           (f"alpha_keybert_all-MiniLM-L6-v2_{sfx}", "(c) α + KeyBERT"),
+           (f"full_all-MiniLM-L6-v2_{sfx}", "(d) full ThreatWeigh")]
+    abl = [(k, n) for k, n in abl if k in g.index]
+    sens = [(w, f"full-w{w:g}_all-MiniLM-L6-v2_{sfx}" if w != 10 else f"full_all-MiniLM-L6-v2_{sfx}")
+            for w in cfg["experiments"]["weight_sensitivity"]]
+    sens = [(w, k) for w, k in sens if k in g.index]
+    if abl:
+        fig, axes = plt.subplots(1, 2, figsize=(10, 3.6), dpi=150, facecolor=SURFACE,
+                                 gridspec_kw={"width_ratios": [3, 2]})
+        ax = axes[0]
+        _style(ax)
+        ys = np.arange(len(abl))[::-1]
+        xs = [100 * g.loc[k, "mean_accuracy_mean"] for k, _ in abl]
+        err = [100 * np.nan_to_num(g.loc[k, "mean_accuracy_std"]) for k, _ in abl]
+        ax.errorbar(xs, ys, xerr=err, fmt="o", ms=7, color=SERIES[0], elinewidth=1.5, capsize=0,
+                    markeredgecolor=SURFACE)
+        for x, y in zip(xs, ys):
+            ax.annotate(f"{x:.2f}", (x, y), xytext=(0, 8), textcoords="offset points", ha="center",
+                        fontsize=8, color=INK2)
+        ax.set_yticks(ys, [n for _, n in abl], color=INK)
+        ax.set_ylim(-0.6, len(abl) - 0.4)
+        ax.set_xlabel("Mean test accuracy over 8 metrics (%)", color=INK2)
+        ax.set_title("Ablation", color=INK, loc="left", fontsize=11)
+        ax = axes[1]
+        _style(ax)
+        ax.grid(axis="y", color=GRID, linewidth=0.8)
+        if sens:
+            ws = [w for w, _ in sens]
+            ys2 = [100 * g.loc[k, "mean_accuracy_mean"] for _, k in sens]
+            ax.plot(ws, ys2, "-o", color=SERIES[0], lw=2, ms=7, markeredgecolor=SURFACE)
+            for x, y in zip(ws, ys2):
+                ax.annotate(f"{y:.2f}", (x, y), xytext=(0, 8), textcoords="offset points", ha="center",
+                            fontsize=8, color=INK2)
+            ax.set_xscale("log")
+            ax.set_xticks(ws, [f"{w:g}" for w in ws], color=INK)
+            ax.margins(y=0.3)
+        ax.set_xlabel("weight for 'expert AND KeyBERT' tokens (before +1)", color=INK2)
+        ax.set_ylabel("Mean test accuracy (%)", color=INK2)
+        ax.set_title("Weight sensitivity (seed 42)", color=INK, loc="left", fontsize=11)
+        fig.tight_layout()
+        fig.savefig(res / "fig_ablation.png", facecolor=SURFACE)
+        plt.close(fig)
+
+
 def build_tables(cfg, profile_filter: str = "budget") -> dict[str, pd.DataFrame]:
     from src.data import load_split
 
     rd = runs_dir(cfg)
-    runs = sorted(p.name for p in rd.iterdir() if (p / "preds_av.npz").exists()) if rd.exists() else []
+    runs = sorted(p.name for p in rd.iterdir() if (p / "preds_av.npz").exists()
+                  and not p.name.startswith(("quick_", "smoke_"))) if rd.exists() else []
     test_random = load_split("test", cfg)
     try:
         test_temporal = load_split("test", cfg, "temporal")
@@ -291,6 +389,7 @@ def build_tables(cfg, profile_filter: str = "budget") -> dict[str, pd.DataFrame]
             "acc_diff": "acc diff (pp)", "ci_low": "95% CI low", "ci_high": "95% CI high",
             "A_only_correct": "only ThreatWeigh correct", "B_only_correct": "only SBERT correct"})
 
+    make_figures(agg, cfg, sfx)
     for name, t in tables.items():
         if name == "all_runs" or t.empty:
             continue
