@@ -289,6 +289,19 @@ def main():
 
     summaries, t_start = [], time.time()
     for m in metrics:
+        # Resume support: a metric whose test predictions (and weights, if requested)
+        # are already on disk is not trained again - useful if the machine restarts.
+        done = run_dir / f"preds_{m}.npz"
+        if done.exists() and (not args.save_model or (models_dir / f"{m}.pt").exists()):
+            z = np.load(done, allow_pickle=True)
+            hist = pd.read_csv(run_dir / f"history_{m}.csv")
+            best = hist.loc[hist.val_acc.idxmax()]
+            s = {"metric": m, "best_epoch": int(best.epoch), "val_acc": float(best.val_acc),
+                 "test_acc": float((z["probs"].argmax(1) == z["y_true"]).mean()), "resumed": True,
+                 "minutes": round(float(hist.sec.sum()) / 60, 2)}
+            print(f"  [{m.upper()}] already done (resumed)  TEST acc={s['test_acc']:.4f}")
+            summaries.append(s)
+            continue
         t0 = time.time()
         s = train_one_metric(m, splits_enc, args, cfg, lex, keywords, device, run_dir, models_dir)
         s["minutes"] = round((time.time() - t0) / 60, 2)
