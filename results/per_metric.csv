@@ -47,6 +47,14 @@ ThreatWeigh (full) [random_budget],S,95.66,95.35,89.76,92.24
 ThreatWeigh (full) [random_budget],C,84.31,83.79,80.80,82.15
 ThreatWeigh (full) [random_budget],I,85.62,86.72,83.70,85.00
 ThreatWeigh (full) [random_budget],A,87.07,81.81,59.91,60.86
+ThreatWeigh (full) [temporal_budget],AV,90.39,74.37,56.46,62.32
+ThreatWeigh (full) [temporal_budget],AC,97.53,89.01,69.42,75.69
+ThreatWeigh (full) [temporal_budget],PR,72.62,67.54,58.57,60.06
+ThreatWeigh (full) [temporal_budget],UI,92.08,91.42,90.92,91.16
+ThreatWeigh (full) [temporal_budget],S,96.87,97.09,93.29,95.04
+ThreatWeigh (full) [temporal_budget],C,85.47,85.68,80.89,82.90
+ThreatWeigh (full) [temporal_budget],I,84.97,87.75,82.61,84.47
+ThreatWeigh (full) [temporal_budget],A,86.75,58.37,58.48,58.22
 SBERT (mean pooling) [random_budget],AV,87.76,74.22,54.35,60.15
 SBERT (mean pooling) [random_budget],AC,94.51,92.32,55.89,59.06
 SBERT (mean pooling) [random_budget],PR,79.34,74.15,64.20,67.27
