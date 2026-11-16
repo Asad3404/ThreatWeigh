@@ -7,14 +7,21 @@ the 8 CVSS v3.1 Base metrics. It then feeds them into the official CVSS v3.1 for
 the 0–10 Base Score, and shows which words each prediction relied on.
 
 ThreatWeigh is a **simplified, student-friendly re-implementation** of WSymBERT
-(Mirtaheri et al., 2026; see [Credits](#credits-and-citation)). It follows the paper's equations,
+(Mirtaheri et al., 2026; see [Credits](#10-credits-and-citation)). It follows the paper's equations,
 but it is **not** a reproduction of the paper's numbers. The paper reports about 96.2% mean accuracy
 on NVD. That figure is quoted here for reference only: ThreatWeigh's reported runs use a much
 smaller compute budget (see [Compute budget](#compute-budget)).
 
-> **Headline (observed, one seed, CPU budget):** on the same 4,000 training rows, ThreatWeigh (88.28% mean accuracy),
-> plain SBERT (88.22%) and TF-IDF + logistic regression (88.24%) are practically tied. The difference between ThreatWeigh
-> and SBERT is +0.05 pp (95% CI −0.02 to +0.13). The expert lexicon gives the largest gain on Privileges Required.
+> **Summary of findings (observed; one seed; CPU budget of 4,000 training rows; full 13,743-CVE test set):**
+> * ThreatWeigh (88.28% mean accuracy), plain SBERT (88.22%) and TF-IDF + logistic regression (88.24%) are practically tied.
+>   ThreatWeigh − SBERT = +0.05 pp (95% CI −0.02 to +0.13). The largest per-metric difference is on Privileges Required
+>   (+0.52 pp), which is borderline after multiple-comparison correction (Holm p = 0.06).
+> * The ablations and the weight values 5 / 10 / 20 all land within 0.11 pp of each other.
+> * On newer CVEs (train ≤ 2021, test ≥ 2023), ThreatWeigh holds up better than TF-IDF (88.33% vs 87.15%; macro-F1 +4.6 pp).
+> * Integrated-Gradients explanations of ThreatWeigh and SBERT are about equally faithful; ThreatWeigh's put slightly more
+>   lexicon words in the top 10. Lexicon cues can also mislead (e.g. "administrator" → PR:High; see 6.7 and 6.8).
+> * 9,199 descriptions in the source data contained their own CVSS vector or score (label leakage); they were cleaned.
+>
 > Every number below was produced by the code in this repository; none is estimated.
 
 ---
