@@ -1,5 +1,29 @@
 | model | metric | accuracy | macro_precision | macro_recall | macro_f1 |
 |---|---|---|---|---|---|
+| ThreatWeigh (b) alpha + expert [random_budget] | AV | 87.76 | 73.92 | 54.32 | 60.03 |
+| ThreatWeigh (b) alpha + expert [random_budget] | AC | 94.46 | 91.96 | 55.47 | 58.39 |
+| ThreatWeigh (b) alpha + expert [random_budget] | PR | 79.59 | 73.85 | 65.54 | 68.54 |
+| ThreatWeigh (b) alpha + expert [random_budget] | UI | 91.54 | 91.02 | 90.21 | 90.59 |
+| ThreatWeigh (b) alpha + expert [random_budget] | S | 95.66 | 95.37 | 89.76 | 92.25 |
+| ThreatWeigh (b) alpha + expert [random_budget] | C | 84.33 | 83.80 | 80.80 | 82.16 |
+| ThreatWeigh (b) alpha + expert [random_budget] | I | 85.77 | 87.08 | 83.71 | 85.14 |
+| ThreatWeigh (b) alpha + expert [random_budget] | A | 87.03 | 79.11 | 59.66 | 60.42 |
+| ThreatWeigh (c) alpha + KeyBERT [random_budget] | AV | 87.66 | 73.78 | 53.34 | 59.06 |
+| ThreatWeigh (c) alpha + KeyBERT [random_budget] | AC | 94.53 | 93.53 | 55.84 | 59.00 |
+| ThreatWeigh (c) alpha + KeyBERT [random_budget] | PR | 79.13 | 73.34 | 64.19 | 67.07 |
+| ThreatWeigh (c) alpha + KeyBERT [random_budget] | UI | 91.50 | 90.93 | 90.21 | 90.55 |
+| ThreatWeigh (c) alpha + KeyBERT [random_budget] | S | 95.64 | 95.19 | 89.85 | 92.24 |
+| ThreatWeigh (c) alpha + KeyBERT [random_budget] | C | 84.22 | 83.57 | 80.95 | 82.15 |
+| ThreatWeigh (c) alpha + KeyBERT [random_budget] | I | 85.69 | 87.24 | 83.50 | 85.06 |
+| ThreatWeigh (c) alpha + KeyBERT [random_budget] | A | 86.96 | 81.33 | 59.47 | 60.17 |
+| ThreatWeigh (a) alpha only [random_budget] | AV | 87.73 | 74.38 | 54.13 | 59.95 |
+| ThreatWeigh (a) alpha only [random_budget] | AC | 94.52 | 92.37 | 55.95 | 59.16 |
+| ThreatWeigh (a) alpha only [random_budget] | PR | 79.26 | 73.45 | 64.79 | 67.66 |
+| ThreatWeigh (a) alpha only [random_budget] | UI | 91.53 | 91.00 | 90.20 | 90.57 |
+| ThreatWeigh (a) alpha only [random_budget] | S | 95.69 | 95.31 | 89.92 | 92.33 |
+| ThreatWeigh (a) alpha only [random_budget] | C | 84.16 | 83.51 | 80.81 | 82.04 |
+| ThreatWeigh (a) alpha only [random_budget] | I | 85.75 | 87.15 | 83.64 | 85.12 |
+| ThreatWeigh (a) alpha only [random_budget] | A | 86.98 | 78.24 | 59.51 | 60.18 |
 | ThreatWeigh (full) [random_budget] | AV | 87.77 | 76.64 | 54.44 | 60.54 |
 | ThreatWeigh (full) [random_budget] | AC | 94.38 | 93.08 | 54.60 | 56.95 |
 | ThreatWeigh (full) [random_budget] | PR | 79.86 | 74.93 | 66.67 | 69.77 |
