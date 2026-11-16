@@ -415,11 +415,49 @@ def build_tables(cfg, profile_filter: str = "budget") -> dict[str, pd.DataFrame]
     return tables
 
 
+def symbolic_weight_stats(cfg) -> pd.DataFrame:
+    """How often does the symbolic weighting actually fire on the test split?
+    Share of (non-special) tokens with weight 11 / 2 / 1, and of CVEs with at least one 11."""
+    from src.data import load_split
+    from src.keybert_cache import load_keywords
+    from src.lexicon import load_lexicon, metric_phrases
+    from src.model import load_tokenizer, symbolic_weights
+
+    test = load_split("test", cfg)
+    tok = load_tokenizer(cfg["model"]["encoder"])
+    enc = tok(test.text.tolist(), truncation=True, max_length=cfg["model"]["max_length"],
+              return_offsets_mapping=True)
+    lex, kws = load_lexicon(cfg), load_keywords(cfg)
+    rows = []
+    for m in METRICS:
+        phrases = metric_phrases(lex, m)
+        counts = {11.0: 0, 2.0: 0, 1.0: 0}
+        any11 = 0
+        for text, offs, cve in zip(test.text, enc["offset_mapping"], test.ID):
+            w = symbolic_weights(text, offs, phrases, kws.get(cve, []), cfg["symbolic"])
+            real = [x for x, (a, b) in zip(w, offs) if b > a]
+            for x in real:
+                counts[float(x)] += 1
+            any11 += any(x == 11 for x in real)
+        tot = sum(counts.values())
+        rows.append({"metric": m.upper(), "tokens_w11_%": round(100 * counts[11.0] / tot, 2),
+                     "tokens_w2_%": round(100 * counts[2.0] / tot, 2),
+                     "tokens_w1_%": round(100 * counts[1.0] / tot, 2),
+                     "cves_with_a_w11_token_%": round(100 * any11 / len(test), 1)})
+    return pd.DataFrame(rows)
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--profile", default="budget", help="which training profile's runs to tabulate")
+    ap.add_argument("--weight-stats", action="store_true", help="also measure how often w=11/2/1 occurs")
     args = ap.parse_args()
     cfg = load_config()
+    if args.weight_stats:
+        ws = symbolic_weight_stats(cfg)
+        ws.to_csv(project_path(cfg["paths"]["results_dir"]) / "symbolic_weight_stats.csv", index=False)
+        (project_path(cfg["paths"]["results_dir"]) / "symbolic_weight_stats.md").write_text(to_markdown(ws) + "\n")
+        print(ws.to_string(index=False))
     tables = build_tables(cfg, args.profile)
     pd.set_option("display.width", 250)
     pd.set_option("display.max_columns", 30)
