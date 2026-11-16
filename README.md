@@ -327,7 +327,47 @@ encoder**; the second explanation is at least as plausible.
 dominated by AV:N (78.2% vs 72.5%).
 
 ### 6.7 Explainability
-@@EXPLAIN@@
+Integrated Gradients was computed for **300 random test CVEs × 8 metrics** for ThreatWeigh and for plain SBERT (same
+encoder), each with both reference baselines (`results/explain_summary.csv`, `explain_by_metric.csv`, per-CVE values in
+`explain_per_cve.csv`). Paired Wilcoxon tests are over 2,400 CVE × metric pairs; sensitivity covers the first 50 CVEs, so 400 pairs
+(`results/explain_paired_tests.csv`).
+
+| measure (mean over CVEs and metrics) | ThreatWeigh | SBERT | Wilcoxon p | better is |
+|---|---|---|---|---|
+| noise rate of top-10 words, pad baseline | 18.6% | 18.6% | 0.90 | lower |
+| noise rate of top-10 words, ones baseline | 41.5% | 39.5% | < 0.001 | lower |
+| top-10 words in expert lexicon, pad baseline | 9.1% | 8.7% | < 0.001 | (descriptive) |
+| deletion-AUC, attribution order, pad baseline | 0.487 | 0.486 | 0.67 | lower |
+| deletion-AUC, attribution order, ones baseline | 0.574 | 0.569 | < 0.001 | lower |
+| deletion-AUC, **random** order (reference) | 0.792 | 0.783 | | |
+| infidelity | 0.0002 | 0.0003 | 0.002 | lower |
+| max-sensitivity (50 CVEs) | 0.260 | 0.269 | 0.014 | lower |
+
+**What we observe.**
+* **Attributions are informative for both models.** Deleting words in attribution order lowers the predicted-class
+  probability much faster than random deletion (AUC 0.49 vs 0.79).
+* **The [PAD] baseline gives better explanations than the all-ones baseline** for both models: less noise (19% vs 40%) and
+  lower deletion-AUC. The ones vector is far from any real token embedding, so it is not a meaningful "absence of
+  information" reference.
+* **ThreatWeigh vs SBERT: statistically detectable but tiny differences.** ThreatWeigh puts slightly more expert-lexicon
+  words into its top 10 (+0.4 pp) and its explanations are slightly more stable (lower max-sensitivity). With the ones
+  baseline its top-10 is slightly noisier. Noise rate and deletion-AUC with the pad baseline are the same. We do **not** see the
+  large interpretability gain the paper describes. With 8 measures and a single seed, the small p-values should be
+  read with care.
+* About **19% of top-10 words are "noise"** (stop-words, numbers, ≤ 2-character tokens such as "." or "4"), for both models.
+
+**Example (CVE-2022-34396, Dell OpenManage, PR).** The description says a *low privileged, authenticated* attacker
+can exploit a DLL issue, and it also mentions *Administrator* privileges as the *result* of the exploit. Top-10 IG words
+(pad baseline; lexicon words in bold):
+
+| model | prediction (true PR:L) | top attributed words |
+|---|---|---|
+| ThreatWeigh | **PR:H (wrong)** | **Administrator**, **privileged**, **low**, **authenticated**, Server, Dell, A, ., OpenManage, DLL |
+| SBERT | PR:L (correct) | local, **authenticated**, Vulnerability, vulnerability, Injection, potentially, 3, Exploitation, **elevated**, 0 |
+
+The up-weighted lexicon cues dominate ThreatWeigh's decision here, and "Administrator" (a PR:H cue) wins even though
+it describes what the attacker *gains*, not what they *need*. This is the same failure mode as in 6.8. More examples
+(top-10 for 5 CVEs × 8 metrics × 2 baselines × 2 models) are in `results/explain_examples.json`.
 
 Integrated Gradients (Captum) is computed on the token embeddings of every metric model, with two reference baselines:
 an all-[PAD]-token embedding and an all-ones embedding. Measures:
