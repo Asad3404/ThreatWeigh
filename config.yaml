@@ -6,7 +6,7 @@
 # =====================================================================
 
 seed: 42                      # master random seed (python, numpy, torch)
-seeds: [42, 43, 44]           # seeds used for the multi-seed experiment
+seeds: [42]                   # seeds actually run (add 43, 44 for mean ± std; see scripts/run_all.sh)
 
 metrics: [av, ac, pr, ui, s, c, i, a]   # the 8 CVSS v3.1 Base metrics
 
@@ -110,14 +110,14 @@ tfidf:
 # ---------------------------------------------------------------------
 experiments:
   ablations: [alpha_only, alpha_expert, alpha_keybert, full]
-  weight_sensitivity: [2, 5, 10, 20]
+  weight_sensitivity: [5, 10, 20]
   bootstrap_samples: 2000
 
 # ---------------------------------------------------------------------
 # Explainability
 # ---------------------------------------------------------------------
 explain:
-  n_samples: 500          # test CVEs used for the quantitative checks
+  n_samples: 300          # test CVEs used for the quantitative checks
   ig_steps: 32
   top_k: 10
   baselines: [pad, ones]
