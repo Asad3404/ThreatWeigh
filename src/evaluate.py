@@ -157,10 +157,20 @@ def paired_bootstrap(runs_a: list[str], runs_b: list[str], cfg, n_boot: int = 20
         rows.append({"metric": m.upper(), "acc_diff": d.mean(), "ci_low": np.percentile(boots, 2.5),
                      "ci_high": np.percentile(boots, 97.5), "A_only_correct": n10, "B_only_correct": n01,
                      "mcnemar_p": p})
+    # Holm-Bonferroni correction over the 8 per-metric McNemar tests
+    ps = np.array([r["mcnemar_p"] for r in rows])
+    order = np.argsort(ps)
+    holm = np.empty_like(ps)
+    running = 0.0
+    for rank, k in enumerate(order):
+        running = max(running, min(1.0, (len(ps) - rank) * ps[k]))
+        holm[k] = running
+    for r, h in zip(rows, holm):
+        r["holm_p"] = float(h)
     mean_boot = np.mean(diffs_all, 0)
     rows.append({"metric": "MEAN", "acc_diff": float(np.mean([r["acc_diff"] for r in rows])),
                  "ci_low": np.percentile(mean_boot, 2.5), "ci_high": np.percentile(mean_boot, 97.5),
-                 "A_only_correct": np.nan, "B_only_correct": np.nan, "mcnemar_p": np.nan})
+                 "A_only_correct": np.nan, "B_only_correct": np.nan, "mcnemar_p": np.nan, "holm_p": np.nan})
     return pd.DataFrame(rows)
 
 
@@ -388,7 +398,10 @@ def build_tables(cfg, profile_filter: str = "budget") -> dict[str, pd.DataFrame]
         sig = paired_bootstrap(full_runs, mean_runs, cfg, cfg["experiments"]["bootstrap_samples"])
         for c in ["acc_diff", "ci_low", "ci_high"]:
             sig[c] = (100 * sig[c]).round(2)
-        sig["mcnemar_p"] = sig["mcnemar_p"].map(lambda p: "" if pd.isna(p) else f"{p:.3g}")
+        for c in ["mcnemar_p", "holm_p"]:
+            sig[c] = sig[c].map(lambda p: "" if pd.isna(p) else f"{p:.3g}")
+        for c in ["A_only_correct", "B_only_correct"]:
+            sig[c] = sig[c].map(lambda v: "" if pd.isna(v) else str(int(v)))
         tables["significance_full_vs_sbert"] = sig.rename(columns={
             "acc_diff": "acc diff (pp)", "ci_low": "95% CI low", "ci_high": "95% CI high",
             "A_only_correct": "only ThreatWeigh correct", "B_only_correct": "only SBERT correct"})

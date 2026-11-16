@@ -1,2 +1,3 @@
 model,seeds,AV,AC,PR,UI,S,C,I,A,mean acc %,mean macro-F1 %,score MSE,score MAE,severity acc %
+SBERT (mean pooling) [random_budget],1,87.8,94.5,79.3,91.5,95.7,84.2,85.7,87.1,88.22,74.51,2.225,0.901,67.55
 ThreatWeigh (full) [random_budget],1,87.8,94.4,79.9,91.5,95.7,84.3,85.6,87.1,88.28,74.76,2.252,0.903,67.42
