@@ -1,0 +1,127 @@
+# =====================================================================
+# ThreatWeigh - single configuration file for every stage.
+# Every script reads this file (src/utils.py -> load_config).
+# Command-line flags such as --quick or --profile only *override* values
+# from here; nothing is hard-coded elsewhere.
+# =====================================================================
+
+seed: 42                      # master random seed (python, numpy, torch)
+seeds: [42, 43, 44]           # seeds used for the multi-seed experiment
+
+metrics: [av, ac, pr, ui, s, c, i, a]   # the 8 CVSS v3.1 Base metrics
+
+# ---------------------------------------------------------------------
+# Where things live (relative to the project root)
+# ---------------------------------------------------------------------
+paths:
+  raw_zip: data/raw/final.zip          # copied from the WSymBERT repo (Nvd/Dataset)
+  raw_csv: data/raw/final.csv
+  wsymbert_repo: https://github.com/ShahbazianR/WSymBert
+  splits_dir: data/splits              # train.csv / val.csv / test.csv (+ temporal_*)
+  lexicon_file: lexicons/expert_lexicon.json
+  keybert_dir: data/keybert            # cached KeyBERT keywords
+  models_dir: models
+  results_dir: results
+
+# ---------------------------------------------------------------------
+# Data preparation
+# ---------------------------------------------------------------------
+data:
+  val_frac: 0.10
+  test_frac: 0.10
+  stratify_on: av
+  # time-aware split: train on CVEs published <= train_until_year,
+  # validate on val_year, test on CVEs from test_from_year onwards.
+  temporal:
+    train_until_year: 2021
+    val_year: 2022
+    test_from_year: 2023
+
+# ---------------------------------------------------------------------
+# Encoder + ThreatWeigh pooling
+# ---------------------------------------------------------------------
+model:
+  # Default: small and CPU-friendly. Stronger option (needs a GPU):
+  #   sentence-transformers/all-mpnet-base-v2
+  encoder: sentence-transformers/all-MiniLM-L6-v2
+  distilbert: distilbert-base-uncased
+  max_length: 128
+  dropout: 0.1
+
+# Symbolic weights (paper Eq.: 10 / 1 / 0, then +1 -> 11 / 2 / 1)
+symbolic:
+  weight_both: 10        # token is in expert lexicon AND KeyBERT keywords
+  weight_one: 1          # token is in exactly one of the two sources
+  weight_none: 0
+  offset: 1              # added to every token so nothing gets weight 0
+  eps: 1.0e-8
+
+keybert:
+  top_n: 5
+  ngram_range: [1, 1]
+  stop_words: null       # no stop-word filtering (as in the paper)
+  use_mmr: false
+  batch_size: 256
+
+# ---------------------------------------------------------------------
+# Training. The "full" values follow the paper (15 epochs, lr 2e-5, bs 16).
+# Profiles below override them.
+# ---------------------------------------------------------------------
+train:
+  lr: 2.0e-5
+  batch_size: 16
+  eval_batch_size: 128
+  epochs: 15
+  patience: 3            # early stopping on validation accuracy
+  weight_decay: 0.01
+  max_train: null        # null = use every training row
+  max_val: null
+  max_test: null
+  num_threads: null      # torch CPU threads (null = torch default)
+
+profiles:
+  # Smoke test that must run on any laptop CPU in a few minutes.
+  quick:
+    epochs: 2
+    max_train: 800
+    max_val: 300
+    max_test: 500
+  # What was actually run for the reported results on a 4-core CPU box
+  # with no GPU (see README "Compute budget"). Same lr / batch size as
+  # the paper, but a stratified training subsample and fewer epochs.
+  budget:
+    epochs: 4
+    patience: 2
+    max_train: 6000
+    max_val: 1500
+    max_test: null       # always evaluate on the FULL test split
+
+# ---------------------------------------------------------------------
+# Baselines
+# ---------------------------------------------------------------------
+tfidf:
+  max_features: 50000
+  ngram_range: [1, 2]
+  C: 4.0
+  max_iter: 2000
+
+# ---------------------------------------------------------------------
+# Experiments
+# ---------------------------------------------------------------------
+experiments:
+  ablations: [alpha_only, alpha_expert, alpha_keybert, full]
+  weight_sensitivity: [2, 5, 10, 20]
+  bootstrap_samples: 2000
+
+# ---------------------------------------------------------------------
+# Explainability
+# ---------------------------------------------------------------------
+explain:
+  n_samples: 500          # test CVEs used for the quantitative checks
+  ig_steps: 32
+  top_k: 10
+  baselines: [pad, ones]
+  infidelity_perturbations: 8
+  sensitivity_perturbations: 8
+  sensitivity_radius: 0.02
+  deletion_steps: 10
