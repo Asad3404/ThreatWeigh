@@ -88,7 +88,7 @@ with tab_pred:
             if c.button(name, use_container_width=True):
                 st.session_state.text = ex
         text = st.text_area("Vulnerability description", key="text", height=120)
-        explain = st.toggle("Explain with Integrated Gradients (a few seconds on CPU)", value=True)
+        explain = st.toggle("Explain with Integrated Gradients (~30 s for 8 models on a CPU; faster on a GPU)", value=True)
         if st.button("Predict", type="primary") and text.strip():
             with st.spinner("Predicting ..."):
                 p = get_predictor(run).predict(text.strip(), explain=explain)
