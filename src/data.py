@@ -21,6 +21,7 @@ What it does
 from __future__ import annotations
 
 import argparse
+import re
 import shutil
 import subprocess
 import tempfile
@@ -59,6 +60,24 @@ def ensure_raw_csv(cfg: dict) -> None:
 # ---------------------------------------------------------------------------
 # 2-3. Cleaning
 # ---------------------------------------------------------------------------
+# Some NVD descriptions (mostly Oracle advisories, ~2.5% of rows) END with the
+# answer, e.g. "CVSS 3.1 Base Score 7.5 (Integrity impacts). CVSS Vector:
+# (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N)." Keeping that text would leak
+# the labels into the input, so these sentences are removed before anything else.
+LEAK_PATTERNS = [
+    r"CVSS\s*(?:v?3(?:\.[01x])?)?\s*Base\s*Score[:\s]*\d+(?:\.\d)?\s*(?:\([^)]*\))?\s*\.?",
+    r"CVSS\s*Vector\s*:?\s*\(?\s*CVSS:3\.[01x]/[A-Z:/]+\s*\)?\s*\.?",
+    r"\(?CVSS:3\.[01x]/[A-Z:/]*\)?\.?",
+    r"\(?\bAV:[NALP]/AC:[LH](?:/[A-Z]{1,2}:[A-Z])+\)?",   # bare vectors in other formats
+]
+
+
+def strip_cvss_leakage(s: pd.Series) -> pd.Series:
+    for p in LEAK_PATTERNS:
+        s = s.str.replace(p, " ", regex=True, flags=re.IGNORECASE)
+    return s.str.replace(r"\s+", " ", regex=True).str.strip()
+
+
 def normalise_text(s: pd.Series) -> pd.Series:
     """Lower-case and collapse whitespace; used only to detect duplicates."""
     return s.str.lower().str.replace(r"\s+", " ", regex=True).str.strip()
@@ -66,7 +85,10 @@ def normalise_text(s: pd.Series) -> pd.Series:
 
 def clean(df: pd.DataFrame) -> pd.DataFrame:
     n0 = len(df)
-    df = df.dropna(subset=["text"])
+    df = df.dropna(subset=["text"]).copy()
+    cleaned = strip_cvss_leakage(df["text"])
+    print(f"Removed CVSS score/vector text (label leakage) from {(cleaned != df['text']).sum()} descriptions")
+    df["text"] = cleaned
     df = df[df["text"].str.strip().str.len() > 0]
     n1 = len(df)
     key = normalise_text(df["text"])

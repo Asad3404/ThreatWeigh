@@ -56,3 +56,10 @@ def test_temporal_split_is_ordered():
         pytest.skip("temporal splits not created")
     assert tr.year.max() < te.year.min()
     assert not set(tr.ID) & set(te.ID)
+
+
+def test_no_cvss_vector_leaks_into_text(splits):
+    """CVSS vectors inside descriptions would leak the labels (see src/data.py)."""
+    for d in splits.values():
+        assert not d.text.str.contains(r"AV:[NALP]/AC:[LH]", regex=True).any()
+        assert not d.text.str.contains(r"CVSS:3\.[01]/", regex=True).any()

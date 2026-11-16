@@ -34,10 +34,10 @@ def main():
     text = " ".join(args.text)
     p = ThreatWeighPredictor(run, cfg).predict(text, explain=args.explain)
     print(f"\nThreatWeigh ({run})\n")
-    print(f"{'Metric':<22}{'Prediction':<14}{'Confidence':>10}")
+    print(f"{"Metric":<28}{'Prediction':<14}{'Confidence':>10}")
     for m, r in p["metrics"].items():
         name = f"{METRIC_NAMES[m]} ({m.upper()})"
-        print(f"{name:<22}{r['label'] + ' ' + LABEL_NAMES[m][r['label']]:<14}{r['confidence']:>10.1%}")
+        print(f"{name:<28}{r['label'] + ' ' + LABEL_NAMES[m][r['label']]:<14}{r['confidence']:>10.1%}")
     print(f"\nVector   : {p['vector']}")
     print(f"Base     : {p['score']}  ({p['severity']})")
     if p["keywords"]:

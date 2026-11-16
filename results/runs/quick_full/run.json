@@ -1,0 +1,90 @@
+{
+  "run": "quick_full",
+  "variant": "full",
+  "encoder": "sentence-transformers/all-MiniLM-L6-v2",
+  "seed": 42,
+  "split": "random",
+  "profile": "quick",
+  "train_cfg": {
+    "lr": 2e-05,
+    "batch_size": 16,
+    "eval_batch_size": 128,
+    "epochs": 2,
+    "patience": 3,
+    "weight_decay": 0.01,
+    "max_train": 800,
+    "max_val": 300,
+    "max_test": 500,
+    "num_threads": 4
+  },
+  "symbolic": {
+    "weight_both": 10,
+    "weight_one": 1,
+    "weight_none": 0,
+    "offset": 1,
+    "eps": 1e-08
+  },
+  "n_train": 800,
+  "n_val": 300,
+  "n_test": 500,
+  "device": "cpu",
+  "metrics": [
+    {
+      "metric": "av",
+      "best_epoch": 2,
+      "val_acc": 0.7666666666666667,
+      "test_acc": 0.82,
+      "minutes": 0.86
+    },
+    {
+      "metric": "ac",
+      "best_epoch": 1,
+      "val_acc": 0.93,
+      "test_acc": 0.938,
+      "minutes": 0.82
+    },
+    {
+      "metric": "pr",
+      "best_epoch": 2,
+      "val_acc": 0.74,
+      "test_acc": 0.694,
+      "minutes": 0.82
+    },
+    {
+      "metric": "ui",
+      "best_epoch": 2,
+      "val_acc": 0.83,
+      "test_acc": 0.862,
+      "minutes": 0.79
+    },
+    {
+      "metric": "s",
+      "best_epoch": 2,
+      "val_acc": 0.9133333333333333,
+      "test_acc": 0.92,
+      "minutes": 0.76
+    },
+    {
+      "metric": "c",
+      "best_epoch": 2,
+      "val_acc": 0.77,
+      "test_acc": 0.746,
+      "minutes": 0.74
+    },
+    {
+      "metric": "i",
+      "best_epoch": 2,
+      "val_acc": 0.7733333333333333,
+      "test_acc": 0.776,
+      "minutes": 0.73
+    },
+    {
+      "metric": "a",
+      "best_epoch": 2,
+      "val_acc": 0.84,
+      "test_acc": 0.864,
+      "minutes": 0.78
+    }
+  ],
+  "total_minutes": 6.3
+}

@@ -3,39 +3,39 @@
   "variant": "tfidf-lr",
   "profile": "budget",
   "n_train": 6000,
-  "n_test": 13745,
+  "n_test": 13743,
   "metrics": [
     {
       "metric": "av",
-      "test_acc": 0.8889050563841396
+      "test_acc": 0.8828494506294113
     },
     {
       "metric": "ac",
-      "test_acc": 0.9563477628228446
+      "test_acc": 0.950956850760387
     },
     {
       "metric": "pr",
-      "test_acc": 0.809094216078574
+      "test_acc": 0.8105217201484392
     },
     {
       "metric": "ui",
-      "test_acc": 0.9103674063295744
+      "test_acc": 0.9094811904242159
     },
     {
       "metric": "s",
-      "test_acc": 0.9527828301200436
+      "test_acc": 0.9526304300371098
     },
     {
       "metric": "c",
-      "test_acc": 0.8352855583848672
+      "test_acc": 0.8372262242596231
     },
     {
       "metric": "i",
-      "test_acc": 0.8451073117497272
+      "test_acc": 0.8455941206432366
     },
     {
       "metric": "a",
-      "test_acc": 0.8723899599854492
+      "test_acc": 0.8699701666302845
     }
   ]
 }

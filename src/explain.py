@@ -104,7 +104,7 @@ class MetricModel:
     def baseline(self, emb, kind: str):
         if kind == "pad":
             pad = self.embed(torch.tensor([[self.tok.pad_token_id]], device=emb.device))
-            return pad.expand_as(emb).clone()
+            return pad.expand_as(emb).detach().clone()
         if kind == "ones":
             return torch.ones_like(emb)
         raise ValueError(kind)
