@@ -24,6 +24,8 @@ smaller compute budget (see [Compute budget](#compute-budget)).
 >
 > Every number below was produced by the code in this repository; none is estimated.
 
+**Demo video:** [`video/threatweigh_demo.mp4`](video/threatweigh_demo.mp4) (3 min) shows the project flow, the CLI and the live app.
+
 ---
 
 ## 1. The problem

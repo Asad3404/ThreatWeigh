@@ -1,0 +1,26 @@
+
+ThreatWeigh (full_all-MiniLM-L6-v2_random_budget_s42)
+
+Metric                      Prediction    Confidence
+Attack Vector (AV)          L Local            98.5%
+Attack Complexity (AC)      H High             75.8%
+Privileges Required (PR)    L Low              82.5%
+User Interaction (UI)       N None             99.5%
+Scope (S)                   U Unchanged        98.9%
+Confidentiality (C)         H High             98.0%
+Integrity (I)               H High             98.9%
+Availability (A)            H High             99.3%
+
+Vector   : CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H
+Base     : 7.0  (High)
+KeyBERT  : privileges, root, ioctl, kernel, driver
+
+Top attributed words per metric (* = in the expert lexicon):
+  AV local*, kernel*, race, driver*, ioctl*
+  AC race*, condition*, kernel, gain, driver
+  PR local*, kernel, users*, ioctl, condition
+  UI kernel*, ioctl, privileges, condition, driver
+  S  privileges, condition, kernel, ioctl, call
+  C  privileges, root*, race, kernel, condition
+  I  race, privileges, kernel, condition, root
+  A  race, privileges, condition, kernel, ioctl

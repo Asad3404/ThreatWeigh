@@ -12,3 +12,4 @@ models/**/*.pt
 models/**/*.safetensors
 models/**/*.bin
 logs/
+video/raw/
