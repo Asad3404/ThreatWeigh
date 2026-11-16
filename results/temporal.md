@@ -1,3 +1,4 @@
 | model | seeds | AV | AC | PR | UI | S | C | I | A | mean acc % | mean macro-F1 % | score MSE | score MAE | severity acc % |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | TF-IDF + LogReg [temporal_budget] | 1 | 89.5 | 97.0 | 73.7 | 91.1 | 96.5 | 82.2 | 82.5 | 84.7 | 87.15 | 71.64 | 2.845 | 1.033 | 63.32 |
+| ThreatWeigh (full) [temporal_budget] | 1 | 90.4 | 97.5 | 72.6 | 92.1 | 96.9 | 85.5 | 85.0 | 86.7 | 88.33 | 76.23 | 2.304 | 0.913 | 67.37 |

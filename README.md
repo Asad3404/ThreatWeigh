@@ -309,7 +309,22 @@ evidence here that the paper's value of 10 is special, nor that it is harmful. (
 ![Ablation and weight sensitivity](results/fig_ablation.png)
 
 ### 6.6 Time-aware split
-@@TEMPORAL@@
+Train on CVEs published **up to 2021**, select on **2022**, and test on **2023–2024** (25,342 CVEs). Same 4k-row
+training budget, seed 42 (`results/temporal.md`):
+
+| Model | AV | AC | PR | UI | S | C | I | A | mean acc | mean macro-F1 | score MSE | severity acc |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| TF-IDF + LogReg | 89.5 | 97.0 | **73.7** | 91.1 | 96.5 | 82.2 | 82.5 | 84.7 | 87.15 | 71.64 | 2.845 | 63.32 |
+| ThreatWeigh | **90.4** | **97.5** | 72.6 | **92.1** | **96.9** | **85.5** | **85.0** | **86.7** | **88.33** | **76.23** | **2.304** | **67.37** |
+
+On newer CVEs, ThreatWeigh drops less than TF-IDF. On the random split the two were tied (88.28 vs 88.24). On the temporal
+split ThreatWeigh is ahead by +1.2 pp accuracy and +4.6 pp macro-F1. Because the plain-SBERT temporal run was dropped
+for time, **we cannot tell whether this robustness comes from the symbolic weighting or simply from the pretrained
+encoder**; the second explanation is at least as plausible.
+
+**PR is the weak point for both models.** Newer CVEs need more privileges (PR:High rises from 6.9% of training CVEs to
+10.4% of test CVEs, and PR:None falls from 64.8% to 57.3%). AV, AC and S get easier because the newer test set is even more
+dominated by AV:N (78.2% vs 72.5%).
 
 ### 6.7 Explainability
 @@EXPLAIN@@
