@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+# large / regenerable data (re-create with `python -m src.data`)
+data/raw/final.csv
+data/splits/
+data/keybert/*.parquet
+data/keybert/*.json
+# trained weights (re-create with the training scripts)
+models/**/*.pt
+models/**/*.safetensors
+models/**/*.bin

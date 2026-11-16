@@ -1,0 +1,16 @@
+# ThreatWeigh - tested with Python 3.13 on CPU (Linux).
+# For a GPU, install the matching torch build from https://pytorch.org first.
+torch>=2.3
+transformers>=4.44
+sentence-transformers>=3.0
+keybert>=0.8
+captum>=0.7
+scikit-learn>=1.4
+pandas>=2.1
+numpy>=1.26
+scipy>=1.11
+PyYAML>=6.0
+tqdm>=4.66
+matplotlib>=3.8
+streamlit>=1.35
+pytest>=8.0
