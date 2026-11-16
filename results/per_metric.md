@@ -1,18 +1,26 @@
 | model | metric | accuracy | macro_precision | macro_recall | macro_f1 |
 |---|---|---|---|---|---|
-| TF-IDF + LogReg [random_budget] | AV | 88.89 | 86.34 | 47.83 | 52.41 |
-| TF-IDF + LogReg [random_budget] | AC | 95.63 | 95.77 | 64.20 | 70.83 |
-| TF-IDF + LogReg [random_budget] | PR | 80.91 | 79.68 | 66.27 | 70.40 |
-| TF-IDF + LogReg [random_budget] | UI | 91.04 | 91.42 | 88.73 | 89.84 |
-| TF-IDF + LogReg [random_budget] | S | 95.28 | 96.80 | 87.48 | 91.29 |
-| TF-IDF + LogReg [random_budget] | C | 83.53 | 85.16 | 77.71 | 80.66 |
-| TF-IDF + LogReg [random_budget] | I | 84.51 | 86.13 | 82.52 | 84.03 |
-| TF-IDF + LogReg [random_budget] | A | 87.24 | 85.21 | 64.03 | 67.06 |
-| TF-IDF + LogReg [random_quick] | AV | 85.00 | 42.98 | 38.01 | 39.38 |
-| TF-IDF + LogReg [random_quick] | AC | 95.40 | 47.70 | 50.00 | 48.82 |
-| TF-IDF + LogReg [random_quick] | PR | 71.00 | 70.48 | 53.03 | 55.76 |
-| TF-IDF + LogReg [random_quick] | UI | 88.40 | 89.37 | 83.95 | 85.92 |
-| TF-IDF + LogReg [random_quick] | S | 94.60 | 96.96 | 83.73 | 88.72 |
-| TF-IDF + LogReg [random_quick] | C | 76.00 | 82.00 | 65.51 | 69.41 |
-| TF-IDF + LogReg [random_quick] | I | 74.80 | 78.07 | 70.73 | 73.32 |
-| TF-IDF + LogReg [random_quick] | A | 85.40 | 57.01 | 57.33 | 57.05 |
+| ThreatWeigh (full) [random_budget] | AV | 87.77 | 76.64 | 54.44 | 60.54 |
+| ThreatWeigh (full) [random_budget] | AC | 94.38 | 93.08 | 54.60 | 56.95 |
+| ThreatWeigh (full) [random_budget] | PR | 79.86 | 74.93 | 66.67 | 69.77 |
+| ThreatWeigh (full) [random_budget] | UI | 91.54 | 91.06 | 90.14 | 90.57 |
+| ThreatWeigh (full) [random_budget] | S | 95.66 | 95.35 | 89.76 | 92.24 |
+| ThreatWeigh (full) [random_budget] | C | 84.31 | 83.79 | 80.80 | 82.15 |
+| ThreatWeigh (full) [random_budget] | I | 85.62 | 86.72 | 83.70 | 85.00 |
+| ThreatWeigh (full) [random_budget] | A | 87.07 | 81.81 | 59.91 | 60.86 |
+| TF-IDF + LogReg [random_budget] | AV | 88.28 | 82.39 | 47.18 | 51.39 |
+| TF-IDF + LogReg [random_budget] | AC | 95.10 | 95.14 | 60.52 | 66.01 |
+| TF-IDF + LogReg [random_budget] | PR | 81.05 | 80.18 | 66.57 | 70.68 |
+| TF-IDF + LogReg [random_budget] | UI | 90.95 | 91.70 | 88.26 | 89.63 |
+| TF-IDF + LogReg [random_budget] | S | 95.26 | 96.66 | 87.42 | 91.21 |
+| TF-IDF + LogReg [random_budget] | C | 83.72 | 85.12 | 78.00 | 80.86 |
+| TF-IDF + LogReg [random_budget] | I | 84.56 | 86.23 | 82.52 | 84.08 |
+| TF-IDF + LogReg [random_budget] | A | 87.00 | 86.03 | 64.09 | 67.37 |
+| TF-IDF + LogReg [random_full] | AV | 92.48 | 88.74 | 72.95 | 79.12 |
+| TF-IDF + LogReg [random_full] | AC | 96.27 | 91.71 | 72.84 | 79.15 |
+| TF-IDF + LogReg [random_full] | PR | 85.44 | 83.79 | 76.62 | 79.59 |
+| TF-IDF + LogReg [random_full] | UI | 94.16 | 94.15 | 92.89 | 93.47 |
+| TF-IDF + LogReg [random_full] | S | 96.67 | 96.31 | 92.31 | 94.16 |
+| TF-IDF + LogReg [random_full] | C | 88.06 | 87.94 | 84.93 | 86.31 |
+| TF-IDF + LogReg [random_full] | I | 88.37 | 88.98 | 87.09 | 87.94 |
+| TF-IDF + LogReg [random_full] | A | 89.80 | 85.84 | 69.85 | 73.81 |
