@@ -195,7 +195,8 @@ def pretty(group: str) -> str:
             return f"{v} [{rest}]"
     m = re.match(r"full-w([\d.]+)_", group)
     if m:
-        return f"ThreatWeigh (weight_both={m.group(1)}) [{group.split('_', 1)[1]}]"
+        rest = group.split("_", 1)[1].replace("all-MiniLM-L6-v2_", "")
+        return f"ThreatWeigh (weight_both={m.group(1)}) [{rest}]"
     return group
 
 
@@ -291,8 +292,11 @@ def make_figures(agg: pd.DataFrame, cfg, sfx: str) -> None:
                         fontsize=8, color=INK2)
         ax.set_yticks(ys, [n for _, n in abl], color=INK)
         ax.set_ylim(-0.6, len(abl) - 0.4)
+        # a fixed 2-pp window, so differences of 0.1 pp look as small as they are
+        centre = round(float(np.mean(xs)), 1)
+        ax.set_xlim(centre - 1.0, centre + 1.0)
         ax.set_xlabel("Mean test accuracy over 8 metrics (%)", color=INK2)
-        ax.set_title("Ablation", color=INK, loc="left", fontsize=11)
+        ax.set_title("Ablation (seed 42; axis spans 2 pp)", color=INK, loc="left", fontsize=11)
         ax = axes[1]
         _style(ax)
         ax.grid(axis="y", color=GRID, linewidth=0.8)
@@ -304,11 +308,14 @@ def make_figures(agg: pd.DataFrame, cfg, sfx: str) -> None:
                 ax.annotate(f"{y:.2f}", (x, y), xytext=(0, 8), textcoords="offset points", ha="center",
                             fontsize=8, color=INK2)
             ax.set_xscale("log")
+            ax.minorticks_off()
             ax.set_xticks(ws, [f"{w:g}" for w in ws], color=INK)
-            ax.margins(y=0.3)
-        ax.set_xlabel("weight for 'expert AND KeyBERT' tokens (before +1)", color=INK2)
+            ax.set_xlim(min(ws) / 1.3, max(ws) * 1.3)
+            centre = round(float(np.mean(ys2)), 1)
+            ax.set_ylim(centre - 1.0, centre + 1.0)
+        ax.set_xlabel("weight_both (paper: 10)", color=INK2)
         ax.set_ylabel("Mean test accuracy (%)", color=INK2)
-        ax.set_title("Weight sensitivity (seed 42)", color=INK, loc="left", fontsize=11)
+        ax.set_title("Weight sensitivity (axis spans 2 pp)", color=INK, loc="left", fontsize=11)
         fig.tight_layout()
         fig.savefig(res / "fig_ablation.png", facecolor=SURFACE)
         plt.close(fig)

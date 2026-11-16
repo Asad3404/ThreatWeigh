@@ -293,7 +293,20 @@ The strong weight (11) is rare. Most w = 2 tokens come from KeyBERT, whose 5 key
 predictions so little. We have not tested that explanation.
 
 ### 6.5 Weight sensitivity
-@@SENSITIVITY@@
+The value given to tokens flagged by **both** the expert lexicon and KeyBERT (10 in the paper, so 11 after the +1) was
+changed while everything else was kept fixed (seed 42; `results/weight_sensitivity.md`):
+
+| weight_both (+1) | AV | AC | PR | UI | S | C | I | A | mean acc | mean macro-F1 | score MSE | severity acc |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 5 (→ 6) | 87.8 | 94.4 | 79.8 | 91.6 | 95.6 | 84.3 | 85.7 | 87.6 | **88.33** | 74.42 | 2.266 | 67.92 |
+| 10 (→ 11, paper) | 87.8 | 94.4 | 79.9 | 91.5 | 95.7 | 84.3 | 85.6 | 87.1 | 88.28 | **74.76** | **2.252** | 67.42 |
+| 20 (→ 21) | 87.8 | 94.2 | 79.9 | 90.7 | 95.7 | 84.4 | 85.6 | 87.5 | 88.22 | 74.26 | 2.269 | **68.11** |
+
+The results are **flat**: mean accuracy changes by at most 0.11 pp between 5 and 20, which is the same spread as between
+completely different ablation variants. The only visible single-metric movement is UI at weight 20 (−0.8 pp). We find no
+evidence here that the paper's value of 10 is special, nor that it is harmful. (The weight-2 point was dropped for time.)
+
+![Ablation and weight sensitivity](results/fig_ablation.png)
 
 ### 6.6 Time-aware split
 @@TEMPORAL@@

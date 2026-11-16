@@ -1,0 +1,41 @@
+{
+  "run": "tfidf-lr_temporal_budget_s42",
+  "variant": "tfidf-lr",
+  "profile": "budget",
+  "n_train": 4000,
+  "n_test": 25342,
+  "metrics": [
+    {
+      "metric": "av",
+      "test_acc": 0.8951542893220741
+    },
+    {
+      "metric": "ac",
+      "test_acc": 0.9695367374319311
+    },
+    {
+      "metric": "pr",
+      "test_acc": 0.7374319311814379
+    },
+    {
+      "metric": "ui",
+      "test_acc": 0.911254044668929
+    },
+    {
+      "metric": "s",
+      "test_acc": 0.9647225949017442
+    },
+    {
+      "metric": "c",
+      "test_acc": 0.8218767263830795
+    },
+    {
+      "metric": "i",
+      "test_acc": 0.8245994791255623
+    },
+    {
+      "metric": "a",
+      "test_acc": 0.8470523242048773
+    }
+  ]
+}
