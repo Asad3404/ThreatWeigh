@@ -1,0 +1,3233 @@
+{
+  "_meta": {
+    "min_support": 10,
+    "min_lift": 1.2,
+    "built_on": "train split only (109951 rows)",
+    "source": "hand-written questions from the FIRST CVSS v3.1 specification"
+  },
+  "metrics": {
+    "av": [
+      {
+        "question": "Does exploitation require the attacker to physically touch or manipulate the device?",
+        "label": "P",
+        "label_name": "Physical",
+        "base_rate": 0.0105,
+        "cues": [
+          {
+            "cue": "physical access",
+            "support": 353,
+            "precision": 0.918,
+            "lift": 87.53
+          },
+          {
+            "cue": "physically proximate",
+            "support": 127,
+            "precision": 0.866,
+            "lift": 82.6
+          },
+          {
+            "cue": "physical proximity",
+            "support": 11,
+            "precision": 0.455,
+            "lift": 43.35
+          },
+          {
+            "cue": "physical attacker",
+            "support": 39,
+            "precision": 0.923,
+            "lift": 88.03
+          },
+          {
+            "cue": "usb",
+            "support": 385,
+            "precision": 0.444,
+            "lift": 42.36
+          },
+          {
+            "cue": "uart",
+            "support": 28,
+            "precision": 0.679,
+            "lift": 64.71
+          },
+          {
+            "cue": "lock screen",
+            "support": 59,
+            "precision": 0.661,
+            "lift": 63.04
+          },
+          {
+            "cue": "lockscreen",
+            "support": 42,
+            "precision": 0.595,
+            "lift": 56.76
+          },
+          {
+            "cue": "boot",
+            "support": 295,
+            "precision": 0.214,
+            "lift": 20.37
+          },
+          {
+            "cue": "bootloader",
+            "support": 111,
+            "precision": 0.234,
+            "lift": 22.34
+          },
+          {
+            "cue": "sd card",
+            "support": 28,
+            "precision": 0.393,
+            "lift": 37.46
+          },
+          {
+            "cue": "hardware",
+            "support": 279,
+            "precision": 0.115,
+            "lift": 10.94
+          }
+        ],
+        "dropped": [
+          {
+            "cue": "physically present",
+            "support": 3,
+            "precision": 1.0,
+            "lift": 95.36
+          },
+          {
+            "cue": "jtag",
+            "support": 1,
+            "precision": 0.0,
+            "lift": 0.0
+          },
+          {
+            "cue": "serial console",
+            "support": 4,
+            "precision": 0.0,
+            "lift": 0.0
+          },
+          {
+            "cue": "debug port",
+            "support": 9,
+            "precision": 0.222,
+            "lift": 21.19
+          },
+          {
+            "cue": "lock-screen",
+            "support": 9,
+            "precision": 0.889,
+            "lift": 84.77
+          },
+          {
+            "cue": "unlocked device",
+            "support": 5,
+            "precision": 1.0,
+            "lift": 95.36
+          },
+          {
+            "cue": "evil maid",
+            "support": 0,
+            "precision": 0.0,
+            "lift": 0.0
+          }
+        ]
+      },
+      {
+        "question": "Is the attack limited to the same local / radio network segment (logically adjacent)?",
+        "label": "A",
+        "label_name": "Adjacent",
+        "base_rate": 0.0206,
+        "cues": [
+          {
+            "cue": "adjacent network",
+            "support": 46,
+            "precision": 0.957,
+            "lift": 46.35
+          },
+          {
+            "cue": "adjacent attacker",
+            "support": 175,
+            "precision": 0.983,
+            "lift": 47.63
+          },
+          {
+            "cue": "adjacent",
+            "support": 377,
+            "precision": 0.944,
+            "lift": 45.76
+          },
+          {
+            "cue": "same network segment",
+            "support": 29,
+            "precision": 0.862,
+            "lift": 41.77
+          },
+          {
+            "cue": "same subnet",
+            "support": 11,
+            "precision": 0.818,
+            "lift": 39.65
+          },
+          {
+            "cue": "local network",
+            "support": 123,
+            "precision": 0.39,
+            "lift": 18.91
+          },
+          {
+            "cue": "local area network",
+            "support": 17,
+            "precision": 0.647,
+            "lift": 31.36
+          },
+          {
+            "cue": "lan",
+            "support": 181,
+            "precision": 0.409,
+            "lift": 19.81
+          },
+          {
+            "cue": "bluetooth",
+            "support": 489,
+            "precision": 0.497,
+            "lift": 24.08
+          },
+          {
+            "cue": "wi-fi",
+            "support": 391,
+            "precision": 0.217,
+            "lift": 10.53
+          },
+          {
+            "cue": "wifi",
+            "support": 264,
+            "precision": 0.242,
+            "lift": 11.75
+          },
+          {
+            "cue": "wireless",
+            "support": 532,
+            "precision": 0.231,
+            "lift": 11.2
+          },
+          {
+            "cue": "wlan",
+            "support": 260,
+            "precision": 0.085,
+            "lift": 4.1
+          },
+          {
+            "cue": "zigbee",
+            "support": 19,
+            "precision": 0.158,
+            "lift": 7.65
+          },
+          {
+            "cue": "802.11",
+            "support": 33,
+            "precision": 0.576,
+            "lift": 27.9
+          },
+          {
+            "cue": "within radio range",
+            "support": 12,
+            "precision": 1.0,
+            "lift": 48.46
+          },
+          {
+            "cue": "radio range",
+            "support": 45,
+            "precision": 1.0,
+            "lift": 48.46
+          },
+          {
+            "cue": "same broadcast domain",
+            "support": 16,
+            "precision": 1.0,
+            "lift": 48.46
+          },
+          {
+            "cue": "layer 2",
+            "support": 70,
+            "precision": 0.757,
+            "lift": 36.69
+          },
+          {
+            "cue": "arp",
+            "support": 41,
+            "precision": 0.561,
+            "lift": 27.18
+          },
+          {
+            "cue": "dhcp",
+            "support": 129,
+            "precision": 0.24,
+            "lift": 11.64
+          },
+          {
+            "cue": "nfc",
+            "support": 106,
+            "precision": 0.16,
+            "lift": 7.77
+          },
+          {
+            "cue": "proximity",
+            "support": 24,
+            "precision": 0.583,
+            "lift": 28.27
+          }
+        ],
+        "dropped": []
+      },
+      {
+        "question": "Does the attacker need local access (a local account, a shell, or a user opening a file)?",
+        "label": "L",
+        "label_name": "Local",
+        "base_rate": 0.2299,
+        "cues": [
+          {
+            "cue": "local user",
+            "support": 714,
+            "precision": 0.947,
+            "lift": 4.12
+          },
+          {
+            "cue": "local users",
+            "support": 1327,
+            "precision": 0.962,
+            "lift": 4.18
+          },
+          {
+            "cue": "local attacker",
+            "support": 1342,
+            "precision": 0.939,
+            "lift": 4.08
+          },
+          {
+            "cue": "local attackers",
+            "support": 440,
+            "precision": 0.98,
+            "lift": 4.26
+          },
+          {
+            "cue": "locally",
+            "support": 285,
+            "precision": 0.811,
+            "lift": 3.53
+          },
+          {
+            "cue": "local access",
+            "support": 1084,
+            "precision": 0.984,
+            "lift": 4.28
+          },
+          {
+            "cue": "local privilege",
+            "support": 352,
+            "precision": 0.974,
+            "lift": 4.24
+          },
+          {
+            "cue": "authenticated local",
+            "support": 73,
+            "precision": 0.89,
+            "lift": 3.87
+          },
+          {
+            "cue": "local authenticated",
+            "support": 128,
+            "precision": 0.953,
+            "lift": 4.15
+          },
+          {
+            "cue": "crafted file",
+            "support": 935,
+            "precision": 0.634,
+            "lift": 2.76
+          },
+          {
+            "cue": "malicious file",
+            "support": 1623,
+            "precision": 0.668,
+            "lift": 2.91
+          },
+          {
+            "cue": "open a crafted",
+            "support": 33,
+            "precision": 0.606,
+            "lift": 2.64
+          },
+          {
+            "cue": "opening a crafted",
+            "support": 23,
+            "precision": 0.87,
+            "lift": 3.78
+          },
+          {
+            "cue": "privilege escalation",
+            "support": 1452,
+            "precision": 0.566,
+            "lift": 2.46
+          },
+          {
+            "cue": "escalate privileges",
+            "support": 570,
+            "precision": 0.595,
+            "lift": 2.59
+          },
+          {
+            "cue": "elevation of privilege",
+            "support": 1391,
+            "precision": 0.84,
+            "lift": 3.65
+          },
+          {
+            "cue": "elevate privileges",
+            "support": 206,
+            "precision": 0.714,
+            "lift": 3.1
+          },
+          {
+            "cue": "kernel",
+            "support": 3814,
+            "precision": 0.8,
+            "lift": 3.48
+          },
+          {
+            "cue": "driver",
+            "support": 2049,
+            "precision": 0.821,
+            "lift": 3.57
+          },
+          {
+            "cue": "setuid",
+            "support": 75,
+            "precision": 0.84,
+            "lift": 3.65
+          },
+          {
+            "cue": "symlink",
+            "support": 161,
+            "precision": 0.665,
+            "lift": 2.89
+          },
+          {
+            "cue": "symbolic link",
+            "support": 110,
+            "precision": 0.736,
+            "lift": 3.2
+          },
+          {
+            "cue": "local system",
+            "support": 125,
+            "precision": 0.672,
+            "lift": 2.92
+          },
+          {
+            "cue": "dll",
+            "support": 907,
+            "precision": 0.828,
+            "lift": 3.6
+          },
+          {
+            "cue": "uncontrolled search path",
+            "support": 168,
+            "precision": 0.929,
+            "lift": 4.04
+          },
+          {
+            "cue": "physical memory",
+            "support": 24,
+            "precision": 0.75,
+            "lift": 3.26
+          },
+          {
+            "cue": "ioctl",
+            "support": 454,
+            "precision": 0.894,
+            "lift": 3.89
+          },
+          {
+            "cue": "android",
+            "support": 3389,
+            "precision": 0.599,
+            "lift": 2.6
+          }
+        ],
+        "dropped": [
+          {
+            "cue": "requires local access",
+            "support": 2,
+            "precision": 0.5,
+            "lift": 2.18
+          },
+          {
+            "cue": "logged-on user",
+            "support": 3,
+            "precision": 0.667,
+            "lift": 2.9
+          }
+        ]
+      },
+      {
+        "question": "Otherwise: can it be exploited remotely over a network or the internet?",
+        "label": "N",
+        "label_name": "Network",
+        "base_rate": 0.739,
+        "cues": [
+          {
+            "cue": "remote attacker",
+            "support": 5988,
+            "precision": 0.968,
+            "lift": 1.31
+          },
+          {
+            "cue": "remotely",
+            "support": 2536,
+            "precision": 0.965,
+            "lift": 1.31
+          },
+          {
+            "cue": "over the network",
+            "support": 111,
+            "precision": 0.946,
+            "lift": 1.28
+          },
+          {
+            "cue": "via the network",
+            "support": 10,
+            "precision": 1.0,
+            "lift": 1.35
+          },
+          {
+            "cue": "network access",
+            "support": 2877,
+            "precision": 0.989,
+            "lift": 1.34
+          },
+          {
+            "cue": "the internet",
+            "support": 241,
+            "precision": 0.909,
+            "lift": 1.23
+          },
+          {
+            "cue": "unauthenticated remote",
+            "support": 551,
+            "precision": 0.969,
+            "lift": 1.31
+          },
+          {
+            "cue": "http request",
+            "support": 1101,
+            "precision": 0.981,
+            "lift": 1.33
+          },
+          {
+            "cue": "http requests",
+            "support": 417,
+            "precision": 0.966,
+            "lift": 1.31
+          },
+          {
+            "cue": "crafted request",
+            "support": 437,
+            "precision": 0.924,
+            "lift": 1.25
+          },
+          {
+            "cue": "crafted http",
+            "support": 706,
+            "precision": 0.977,
+            "lift": 1.32
+          },
+          {
+            "cue": "web request",
+            "support": 148,
+            "precision": 0.959,
+            "lift": 1.3
+          },
+          {
+            "cue": "crafted url",
+            "support": 401,
+            "precision": 0.998,
+            "lift": 1.35
+          },
+          {
+            "cue": "url",
+            "support": 2882,
+            "precision": 0.972,
+            "lift": 1.32
+          },
+          {
+            "cue": "crafted web site",
+            "support": 323,
+            "precision": 0.981,
+            "lift": 1.33
+          },
+          {
+            "cue": "web page",
+            "support": 610,
+            "precision": 0.984,
+            "lift": 1.33
+          },
+          {
+            "cue": "web interface",
+            "support": 732,
+            "precision": 0.962,
+            "lift": 1.3
+          },
+          {
+            "cue": "website",
+            "support": 752,
+            "precision": 0.956,
+            "lift": 1.29
+          },
+          {
+            "cue": "cross-site scripting",
+            "support": 7844,
+            "precision": 0.998,
+            "lift": 1.35
+          },
+          {
+            "cue": "xss",
+            "support": 9917,
+            "precision": 0.997,
+            "lift": 1.35
+          },
+          {
+            "cue": "sql injection",
+            "support": 4930,
+            "precision": 0.991,
+            "lift": 1.34
+          },
+          {
+            "cue": "cross-site request forgery",
+            "support": 1946,
+            "precision": 0.998,
+            "lift": 1.35
+          },
+          {
+            "cue": "csrf",
+            "support": 2862,
+            "precision": 0.996,
+            "lift": 1.35
+          },
+          {
+            "cue": "server-side request forgery",
+            "support": 404,
+            "precision": 0.963,
+            "lift": 1.3
+          },
+          {
+            "cue": "ssrf",
+            "support": 647,
+            "precision": 0.971,
+            "lift": 1.31
+          },
+          {
+            "cue": "open redirect",
+            "support": 395,
+            "precision": 0.997,
+            "lift": 1.35
+          },
+          {
+            "cue": "api",
+            "support": 2760,
+            "precision": 0.9,
+            "lift": 1.22
+          },
+          {
+            "cue": "parameter",
+            "support": 7642,
+            "precision": 0.963,
+            "lift": 1.3
+          },
+          {
+            "cue": "plugin",
+            "support": 8062,
+            "precision": 0.964,
+            "lift": 1.3
+          },
+          {
+            "cue": "wordpress",
+            "support": 5113,
+            "precision": 0.998,
+            "lift": 1.35
+          },
+          {
+            "cue": "php",
+            "support": 8399,
+            "precision": 0.99,
+            "lift": 1.34
+          }
+        ],
+        "dropped": [
+          {
+            "cue": "remote attackers",
+            "support": 8084,
+            "precision": 0.81,
+            "lift": 1.1
+          },
+          {
+            "cue": "remote",
+            "support": 22745,
+            "precision": 0.877,
+            "lift": 1.19
+          },
+          {
+            "cue": "crafted packet",
+            "support": 265,
+            "precision": 0.875,
+            "lift": 1.18
+          },
+          {
+            "cue": "crafted packets",
+            "support": 209,
+            "precision": 0.885,
+            "lift": 1.2
+          }
+        ]
+      }
+    ],
+    "ac": [
+      {
+        "question": "Does success depend on conditions beyond the attacker's control (race, man-in-the-middle, special configuration, information gathering)?",
+        "label": "H",
+        "label_name": "High",
+        "base_rate": 0.0603,
+        "cues": [
+          {
+            "cue": "race condition",
+            "support": 675,
+            "precision": 0.938,
+            "lift": 15.55
+          },
+          {
+            "cue": "man-in-the-middle",
+            "support": 590,
+            "precision": 0.966,
+            "lift": 16.02
+          },
+          {
+            "cue": "man in the middle",
+            "support": 132,
+            "precision": 0.962,
+            "lift": 15.96
+          },
+          {
+            "cue": "mitm",
+            "support": 279,
+            "precision": 0.953,
+            "lift": 15.81
+          },
+          {
+            "cue": "timing attack",
+            "support": 40,
+            "precision": 0.65,
+            "lift": 10.78
+          },
+          {
+            "cue": "side-channel",
+            "support": 87,
+            "precision": 0.494,
+            "lift": 8.2
+          },
+          {
+            "cue": "side channel",
+            "support": 149,
+            "precision": 0.208,
+            "lift": 3.45
+          },
+          {
+            "cue": "brute force",
+            "support": 206,
+            "precision": 0.102,
+            "lift": 1.69
+          },
+          {
+            "cue": "brute-force",
+            "support": 157,
+            "precision": 0.14,
+            "lift": 2.32
+          },
+          {
+            "cue": "non-default",
+            "support": 76,
+            "precision": 0.171,
+            "lift": 2.84
+          },
+          {
+            "cue": "certain configurations",
+            "support": 44,
+            "precision": 0.114,
+            "lift": 1.88
+          },
+          {
+            "cue": "certain conditions",
+            "support": 248,
+            "precision": 0.149,
+            "lift": 2.47
+          },
+          {
+            "cue": "specific conditions",
+            "support": 41,
+            "precision": 0.317,
+            "lift": 5.26
+          },
+          {
+            "cue": "intercept",
+            "support": 165,
+            "precision": 0.388,
+            "lift": 6.43
+          },
+          {
+            "cue": "predict",
+            "support": 39,
+            "precision": 0.231,
+            "lift": 3.83
+          },
+          {
+            "cue": "guess",
+            "support": 98,
+            "precision": 0.255,
+            "lift": 4.23
+          },
+          {
+            "cue": "toctou",
+            "support": 92,
+            "precision": 0.978,
+            "lift": 16.23
+          },
+          {
+            "cue": "time-of-check",
+            "support": 56,
+            "precision": 0.982,
+            "lift": 16.29
+          },
+          {
+            "cue": "padding oracle",
+            "support": 28,
+            "precision": 0.821,
+            "lift": 13.62
+          },
+          {
+            "cue": "cache",
+            "support": 468,
+            "precision": 0.128,
+            "lift": 2.13
+          },
+          {
+            "cue": "cryptographic",
+            "support": 482,
+            "precision": 0.135,
+            "lift": 2.24
+          },
+          {
+            "cue": "when configured",
+            "support": 73,
+            "precision": 0.26,
+            "lift": 4.32
+          },
+          {
+            "cue": "is enabled",
+            "support": 613,
+            "precision": 0.199,
+            "lift": 3.3
+          },
+          {
+            "cue": "if the",
+            "support": 1718,
+            "precision": 0.176,
+            "lift": 2.93
+          },
+          {
+            "cue": "difficult",
+            "support": 625,
+            "precision": 0.901,
+            "lift": 14.94
+          },
+          {
+            "cue": "complex",
+            "support": 67,
+            "precision": 0.179,
+            "lift": 2.97
+          },
+          {
+            "cue": "spoof",
+            "support": 494,
+            "precision": 0.344,
+            "lift": 5.71
+          },
+          {
+            "cue": "privileged network position",
+            "support": 50,
+            "precision": 0.52,
+            "lift": 8.62
+          },
+          {
+            "cue": "downgrade",
+            "support": 62,
+            "precision": 0.242,
+            "lift": 4.01
+          }
+        ],
+        "dropped": [
+          {
+            "cue": "specific configuration",
+            "support": 16,
+            "precision": 0.062,
+            "lift": 1.04
+          },
+          {
+            "cue": "in a position to",
+            "support": 1,
+            "precision": 1.0,
+            "lift": 16.59
+          }
+        ]
+      },
+      {
+        "question": "Otherwise: can the attack be repeated at will with no special conditions?",
+        "label": "L",
+        "label_name": "Low",
+        "base_rate": 0.9397,
+        "cues": [],
+        "dropped": [
+          {
+            "cue": "easily",
+            "support": 2503,
+            "precision": 0.991,
+            "lift": 1.05
+          },
+          {
+            "cue": "trivially",
+            "support": 22,
+            "precision": 0.955,
+            "lift": 1.02
+          },
+          {
+            "cue": "default configuration",
+            "support": 149,
+            "precision": 0.872,
+            "lift": 0.93
+          },
+          {
+            "cue": "default installation",
+            "support": 31,
+            "precision": 0.968,
+            "lift": 1.03
+          },
+          {
+            "cue": "no special",
+            "support": 13,
+            "precision": 0.923,
+            "lift": 0.98
+          },
+          {
+            "cue": "reliably",
+            "support": 16,
+            "precision": 0.812,
+            "lift": 0.86
+          },
+          {
+            "cue": "any user",
+            "support": 405,
+            "precision": 0.936,
+            "lift": 1.0
+          },
+          {
+            "cue": "sql injection",
+            "support": 4930,
+            "precision": 0.989,
+            "lift": 1.05
+          },
+          {
+            "cue": "cross-site scripting",
+            "support": 7844,
+            "precision": 0.996,
+            "lift": 1.06
+          },
+          {
+            "cue": "xss",
+            "support": 9917,
+            "precision": 0.996,
+            "lift": 1.06
+          },
+          {
+            "cue": "unauthenticated",
+            "support": 7203,
+            "precision": 0.928,
+            "lift": 0.99
+          },
+          {
+            "cue": "parameter",
+            "support": 7642,
+            "precision": 0.987,
+            "lift": 1.05
+          }
+        ]
+      }
+    ],
+    "pr": [
+      {
+        "question": "Must the attacker already hold administrative / high privileges?",
+        "label": "H",
+        "label_name": "High",
+        "base_rate": 0.0816,
+        "cues": [
+          {
+            "cue": "administrator",
+            "support": 2139,
+            "precision": 0.324,
+            "lift": 3.96
+          },
+          {
+            "cue": "administrators",
+            "support": 661,
+            "precision": 0.548,
+            "lift": 6.71
+          },
+          {
+            "cue": "administrative",
+            "support": 1049,
+            "precision": 0.367,
+            "lift": 4.5
+          },
+          {
+            "cue": "admin",
+            "support": 5100,
+            "precision": 0.384,
+            "lift": 4.7
+          },
+          {
+            "cue": "admin privileges",
+            "support": 145,
+            "precision": 0.524,
+            "lift": 6.42
+          },
+          {
+            "cue": "administrator privileges",
+            "support": 199,
+            "precision": 0.518,
+            "lift": 6.34
+          },
+          {
+            "cue": "administrative privileges",
+            "support": 234,
+            "precision": 0.5,
+            "lift": 6.13
+          },
+          {
+            "cue": "high privileges",
+            "support": 120,
+            "precision": 0.783,
+            "lift": 9.6
+          },
+          {
+            "cue": "high-privileged",
+            "support": 71,
+            "precision": 0.817,
+            "lift": 10.01
+          },
+          {
+            "cue": "highly privileged",
+            "support": 36,
+            "precision": 0.556,
+            "lift": 6.81
+          },
+          {
+            "cue": "privileged user",
+            "support": 647,
+            "precision": 0.553,
+            "lift": 6.78
+          },
+          {
+            "cue": "privileged users",
+            "support": 135,
+            "precision": 0.222,
+            "lift": 2.72
+          },
+          {
+            "cue": "superuser",
+            "support": 49,
+            "precision": 0.245,
+            "lift": 3.0
+          },
+          {
+            "cue": "root privileges",
+            "support": 504,
+            "precision": 0.288,
+            "lift": 3.53
+          },
+          {
+            "cue": "root access",
+            "support": 196,
+            "precision": 0.102,
+            "lift": 1.25
+          },
+          {
+            "cue": "system administrator",
+            "support": 54,
+            "precision": 0.407,
+            "lift": 4.99
+          },
+          {
+            "cue": "elevated privileges",
+            "support": 445,
+            "precision": 0.29,
+            "lift": 3.55
+          },
+          {
+            "cue": "privileged account",
+            "support": 37,
+            "precision": 0.162,
+            "lift": 1.99
+          },
+          {
+            "cue": "admin panel",
+            "support": 158,
+            "precision": 0.361,
+            "lift": 4.42
+          },
+          {
+            "cue": "admin account",
+            "support": 119,
+            "precision": 0.202,
+            "lift": 2.47
+          },
+          {
+            "cue": "authenticated admin",
+            "support": 49,
+            "precision": 0.755,
+            "lift": 9.25
+          },
+          {
+            "cue": "authenticated administrator",
+            "support": 64,
+            "precision": 0.844,
+            "lift": 10.34
+          }
+        ],
+        "dropped": [
+          {
+            "cue": "site administrator",
+            "support": 217,
+            "precision": 0.041,
+            "lift": 0.51
+          }
+        ]
+      },
+      {
+        "question": "Must the attacker be an ordinary authenticated / logged-in user?",
+        "label": "L",
+        "label_name": "Low",
+        "base_rate": 0.2942,
+        "cues": [
+          {
+            "cue": "authenticated user",
+            "support": 2129,
+            "precision": 0.787,
+            "lift": 2.67
+          },
+          {
+            "cue": "authenticated users",
+            "support": 1476,
+            "precision": 0.889,
+            "lift": 3.02
+          },
+          {
+            "cue": "remote authenticated users",
+            "support": 916,
+            "precision": 0.927,
+            "lift": 3.15
+          },
+          {
+            "cue": "authenticated attacker",
+            "support": 1285,
+            "precision": 0.836,
+            "lift": 2.84
+          },
+          {
+            "cue": "authenticated attackers",
+            "support": 838,
+            "precision": 0.835,
+            "lift": 2.84
+          },
+          {
+            "cue": "authenticated",
+            "support": 8825,
+            "precision": 0.754,
+            "lift": 2.56
+          },
+          {
+            "cue": "low-privileged",
+            "support": 379,
+            "precision": 0.984,
+            "lift": 3.34
+          },
+          {
+            "cue": "low privileged",
+            "support": 1170,
+            "precision": 0.995,
+            "lift": 3.38
+          },
+          {
+            "cue": "low privilege",
+            "support": 113,
+            "precision": 0.956,
+            "lift": 3.25
+          },
+          {
+            "cue": "low-privilege",
+            "support": 58,
+            "precision": 0.914,
+            "lift": 3.11
+          },
+          {
+            "cue": "logged-in user",
+            "support": 86,
+            "precision": 0.477,
+            "lift": 1.62
+          },
+          {
+            "cue": "logged in user",
+            "support": 87,
+            "precision": 0.575,
+            "lift": 1.95
+          },
+          {
+            "cue": "registered user",
+            "support": 20,
+            "precision": 0.5,
+            "lift": 1.7
+          },
+          {
+            "cue": "local user",
+            "support": 714,
+            "precision": 0.826,
+            "lift": 2.81
+          },
+          {
+            "cue": "local users",
+            "support": 1327,
+            "precision": 0.852,
+            "lift": 2.89
+          },
+          {
+            "cue": "subscriber",
+            "support": 267,
+            "precision": 0.839,
+            "lift": 2.85
+          },
+          {
+            "cue": "contributor",
+            "support": 509,
+            "precision": 0.984,
+            "lift": 3.35
+          },
+          {
+            "cue": "standard user",
+            "support": 32,
+            "precision": 0.906,
+            "lift": 3.08
+          },
+          {
+            "cue": "unprivileged user",
+            "support": 233,
+            "precision": 0.751,
+            "lift": 2.55
+          },
+          {
+            "cue": "unprivileged",
+            "support": 623,
+            "precision": 0.679,
+            "lift": 2.31
+          },
+          {
+            "cue": "normal user",
+            "support": 68,
+            "precision": 0.824,
+            "lift": 2.8
+          },
+          {
+            "cue": "user account",
+            "support": 326,
+            "precision": 0.479,
+            "lift": 1.63
+          },
+          {
+            "cue": "valid credentials",
+            "support": 90,
+            "precision": 0.611,
+            "lift": 2.08
+          },
+          {
+            "cue": "with access to",
+            "support": 611,
+            "precision": 0.661,
+            "lift": 2.25
+          },
+          {
+            "cue": "local attacker",
+            "support": 1342,
+            "precision": 0.71,
+            "lift": 2.41
+          }
+        ],
+        "dropped": [
+          {
+            "cue": "registered users",
+            "support": 18,
+            "precision": 0.333,
+            "lift": 1.13
+          },
+          {
+            "cue": "valid account",
+            "support": 9,
+            "precision": 0.556,
+            "lift": 1.89
+          }
+        ]
+      },
+      {
+        "question": "Otherwise: can an anonymous, unauthenticated attacker do it?",
+        "label": "N",
+        "label_name": "None",
+        "base_rate": 0.6242,
+        "cues": [
+          {
+            "cue": "unauthenticated",
+            "support": 7203,
+            "precision": 0.976,
+            "lift": 1.56
+          },
+          {
+            "cue": "unauthenticated attacker",
+            "support": 2828,
+            "precision": 0.981,
+            "lift": 1.57
+          },
+          {
+            "cue": "unauthenticated remote",
+            "support": 551,
+            "precision": 0.984,
+            "lift": 1.58
+          },
+          {
+            "cue": "without authentication",
+            "support": 295,
+            "precision": 0.912,
+            "lift": 1.46
+          },
+          {
+            "cue": "does not require authentication",
+            "support": 45,
+            "precision": 0.933,
+            "lift": 1.5
+          },
+          {
+            "cue": "no authentication",
+            "support": 69,
+            "precision": 0.913,
+            "lift": 1.46
+          },
+          {
+            "cue": "missing authentication",
+            "support": 119,
+            "precision": 0.874,
+            "lift": 1.4
+          },
+          {
+            "cue": "pre-auth",
+            "support": 11,
+            "precision": 1.0,
+            "lift": 1.6
+          },
+          {
+            "cue": "anonymous",
+            "support": 141,
+            "precision": 0.844,
+            "lift": 1.35
+          },
+          {
+            "cue": "authentication bypass",
+            "support": 601,
+            "precision": 0.854,
+            "lift": 1.37
+          },
+          {
+            "cue": "bypass authentication",
+            "support": 354,
+            "precision": 0.907,
+            "lift": 1.45
+          },
+          {
+            "cue": "without logging in",
+            "support": 19,
+            "precision": 1.0,
+            "lift": 1.6
+          },
+          {
+            "cue": "remote attackers",
+            "support": 8084,
+            "precision": 0.905,
+            "lift": 1.45
+          },
+          {
+            "cue": "remote attacker",
+            "support": 5988,
+            "precision": 0.77,
+            "lift": 1.23
+          },
+          {
+            "cue": "cross-site request forgery",
+            "support": 1946,
+            "precision": 0.951,
+            "lift": 1.52
+          },
+          {
+            "cue": "csrf",
+            "support": 2862,
+            "precision": 0.916,
+            "lift": 1.47
+          },
+          {
+            "cue": "crafted web site",
+            "support": 323,
+            "precision": 0.972,
+            "lift": 1.56
+          },
+          {
+            "cue": "crafted file",
+            "support": 935,
+            "precision": 0.892,
+            "lift": 1.43
+          },
+          {
+            "cue": "crafted packet",
+            "support": 265,
+            "precision": 0.853,
+            "lift": 1.37
+          }
+        ],
+        "dropped": [
+          {
+            "cue": "pre-authentication",
+            "support": 23,
+            "precision": 0.739,
+            "lift": 1.18
+          },
+          {
+            "cue": "cross-site scripting",
+            "support": 7844,
+            "precision": 0.428,
+            "lift": 0.69
+          },
+          {
+            "cue": "xss",
+            "support": 9917,
+            "precision": 0.523,
+            "lift": 0.84
+          }
+        ]
+      }
+    ],
+    "ui": [
+      {
+        "question": "Must a user other than the attacker take some action (click, open, visit)?",
+        "label": "R",
+        "label_name": "Required",
+        "base_rate": 0.3459,
+        "cues": [
+          {
+            "cue": "user interaction is needed",
+            "support": 503,
+            "precision": 0.958,
+            "lift": 2.77
+          },
+          {
+            "cue": "user interaction is required",
+            "support": 927,
+            "precision": 0.978,
+            "lift": 2.83
+          },
+          {
+            "cue": "requires user interaction",
+            "support": 469,
+            "precision": 1.0,
+            "lift": 2.89
+          },
+          {
+            "cue": "convince a user",
+            "support": 68,
+            "precision": 0.956,
+            "lift": 2.76
+          },
+          {
+            "cue": "trick a user",
+            "support": 127,
+            "precision": 0.976,
+            "lift": 2.82
+          },
+          {
+            "cue": "tricking a user",
+            "support": 17,
+            "precision": 1.0,
+            "lift": 2.89
+          },
+          {
+            "cue": "victim",
+            "support": 1922,
+            "precision": 0.838,
+            "lift": 2.42
+          },
+          {
+            "cue": "click",
+            "support": 384,
+            "precision": 0.898,
+            "lift": 2.6
+          },
+          {
+            "cue": "clicks",
+            "support": 70,
+            "precision": 0.957,
+            "lift": 2.77
+          },
+          {
+            "cue": "clicking",
+            "support": 404,
+            "precision": 0.968,
+            "lift": 2.8
+          },
+          {
+            "cue": "visit",
+            "support": 1065,
+            "precision": 0.977,
+            "lift": 2.83
+          },
+          {
+            "cue": "visiting",
+            "support": 188,
+            "precision": 0.676,
+            "lift": 1.95
+          },
+          {
+            "cue": "visits",
+            "support": 116,
+            "precision": 0.888,
+            "lift": 2.57
+          },
+          {
+            "cue": "open a crafted",
+            "support": 33,
+            "precision": 0.97,
+            "lift": 2.8
+          },
+          {
+            "cue": "opens a crafted",
+            "support": 13,
+            "precision": 1.0,
+            "lift": 2.89
+          },
+          {
+            "cue": "malicious link",
+            "support": 208,
+            "precision": 0.976,
+            "lift": 2.82
+          },
+          {
+            "cue": "crafted link",
+            "support": 221,
+            "precision": 0.982,
+            "lift": 2.84
+          },
+          {
+            "cue": "crafted web site",
+            "support": 323,
+            "precision": 0.991,
+            "lift": 2.86
+          },
+          {
+            "cue": "crafted website",
+            "support": 22,
+            "precision": 0.864,
+            "lift": 2.5
+          },
+          {
+            "cue": "web page",
+            "support": 610,
+            "precision": 0.928,
+            "lift": 2.68
+          },
+          {
+            "cue": "cross-site scripting",
+            "support": 7844,
+            "precision": 0.991,
+            "lift": 2.86
+          },
+          {
+            "cue": "xss",
+            "support": 9917,
+            "precision": 0.992,
+            "lift": 2.87
+          },
+          {
+            "cue": "cross-site request forgery",
+            "support": 1946,
+            "precision": 0.979,
+            "lift": 2.83
+          },
+          {
+            "cue": "csrf",
+            "support": 2862,
+            "precision": 0.955,
+            "lift": 2.76
+          },
+          {
+            "cue": "phishing",
+            "support": 266,
+            "precision": 0.921,
+            "lift": 2.66
+          },
+          {
+            "cue": "social engineering",
+            "support": 59,
+            "precision": 0.644,
+            "lift": 1.86
+          },
+          {
+            "cue": "persuade",
+            "support": 10,
+            "precision": 0.9,
+            "lift": 2.6
+          },
+          {
+            "cue": "entice",
+            "support": 15,
+            "precision": 1.0,
+            "lift": 2.89
+          },
+          {
+            "cue": "crafted document",
+            "support": 103,
+            "precision": 0.864,
+            "lift": 2.5
+          },
+          {
+            "cue": "crafted file",
+            "support": 935,
+            "precision": 0.855,
+            "lift": 2.47
+          },
+          {
+            "cue": "malicious file",
+            "support": 1623,
+            "precision": 0.916,
+            "lift": 2.65
+          },
+          {
+            "cue": "attachment",
+            "support": 185,
+            "precision": 0.562,
+            "lift": 1.63
+          },
+          {
+            "cue": "open redirect",
+            "support": 395,
+            "precision": 0.985,
+            "lift": 2.85
+          },
+          {
+            "cue": "clickjacking",
+            "support": 88,
+            "precision": 0.932,
+            "lift": 2.69
+          },
+          {
+            "cue": "user to open",
+            "support": 175,
+            "precision": 0.954,
+            "lift": 2.76
+          },
+          {
+            "cue": "user opens",
+            "support": 107,
+            "precision": 0.991,
+            "lift": 2.86
+          },
+          {
+            "cue": "stored xss",
+            "support": 1158,
+            "precision": 0.997,
+            "lift": 2.88
+          },
+          {
+            "cue": "reflected",
+            "support": 2093,
+            "precision": 0.987,
+            "lift": 2.85
+          },
+          {
+            "cue": "inject arbitrary web script",
+            "support": 941,
+            "precision": 0.997,
+            "lift": 2.88
+          },
+          {
+            "cue": "browser",
+            "support": 1591,
+            "precision": 0.756,
+            "lift": 2.19
+          }
+        ],
+        "dropped": []
+      },
+      {
+        "question": "Otherwise: can it be exploited without any action from another user?",
+        "label": "N",
+        "label_name": "None",
+        "base_rate": 0.6541,
+        "cues": [
+          {
+            "cue": "user interaction is not needed",
+            "support": 2312,
+            "precision": 0.999,
+            "lift": 1.53
+          },
+          {
+            "cue": "no user interaction",
+            "support": 61,
+            "precision": 1.0,
+            "lift": 1.53
+          },
+          {
+            "cue": "does not require user interaction",
+            "support": 64,
+            "precision": 0.984,
+            "lift": 1.5
+          },
+          {
+            "cue": "sql injection",
+            "support": 4930,
+            "precision": 0.992,
+            "lift": 1.52
+          },
+          {
+            "cue": "command injection",
+            "support": 2058,
+            "precision": 0.959,
+            "lift": 1.47
+          },
+          {
+            "cue": "os command injection",
+            "support": 449,
+            "precision": 0.962,
+            "lift": 1.47
+          },
+          {
+            "cue": "crafted packet",
+            "support": 265,
+            "precision": 0.981,
+            "lift": 1.5
+          },
+          {
+            "cue": "crafted request",
+            "support": 437,
+            "precision": 0.838,
+            "lift": 1.28
+          },
+          {
+            "cue": "http request",
+            "support": 1101,
+            "precision": 0.89,
+            "lift": 1.36
+          },
+          {
+            "cue": "privilege escalation",
+            "support": 1452,
+            "precision": 0.879,
+            "lift": 1.34
+          },
+          {
+            "cue": "local users",
+            "support": 1327,
+            "precision": 0.9,
+            "lift": 1.38
+          },
+          {
+            "cue": "path traversal",
+            "support": 1014,
+            "precision": 0.932,
+            "lift": 1.42
+          },
+          {
+            "cue": "directory traversal",
+            "support": 1212,
+            "precision": 0.938,
+            "lift": 1.43
+          },
+          {
+            "cue": "kernel",
+            "support": 3814,
+            "precision": 0.812,
+            "lift": 1.24
+          }
+        ],
+        "dropped": [
+          {
+            "cue": "without user interaction",
+            "support": 23,
+            "precision": 0.739,
+            "lift": 1.13
+          },
+          {
+            "cue": "zero-click",
+            "support": 0,
+            "precision": 0.0,
+            "lift": 0.0
+          },
+          {
+            "cue": "unauthenticated",
+            "support": 7203,
+            "precision": 0.742,
+            "lift": 1.13
+          },
+          {
+            "cue": "denial of service",
+            "support": 11324,
+            "precision": 0.714,
+            "lift": 1.09
+          },
+          {
+            "cue": "buffer overflow",
+            "support": 5061,
+            "precision": 0.68,
+            "lift": 1.04
+          }
+        ]
+      }
+    ],
+    "s": [
+      {
+        "question": "Can the impact cross a security boundary into another component (sandbox/VM/container escape, script running in other users' browsers, SSRF)?",
+        "label": "C",
+        "label_name": "Changed",
+        "base_rate": 0.1769,
+        "cues": [
+          {
+            "cue": "cross-site scripting",
+            "support": 7844,
+            "precision": 0.984,
+            "lift": 5.57
+          },
+          {
+            "cue": "xss",
+            "support": 9917,
+            "precision": 0.982,
+            "lift": 5.55
+          },
+          {
+            "cue": "inject arbitrary web script",
+            "support": 941,
+            "precision": 0.995,
+            "lift": 5.62
+          },
+          {
+            "cue": "web script or html",
+            "support": 991,
+            "precision": 0.995,
+            "lift": 5.63
+          },
+          {
+            "cue": "arbitrary web script",
+            "support": 1019,
+            "precision": 0.995,
+            "lift": 5.63
+          },
+          {
+            "cue": "stored xss",
+            "support": 1158,
+            "precision": 0.987,
+            "lift": 5.58
+          },
+          {
+            "cue": "reflected xss",
+            "support": 607,
+            "precision": 0.993,
+            "lift": 5.62
+          },
+          {
+            "cue": "sandbox escape",
+            "support": 120,
+            "precision": 0.808,
+            "lift": 4.57
+          },
+          {
+            "cue": "escape the sandbox",
+            "support": 11,
+            "precision": 0.818,
+            "lift": 4.63
+          },
+          {
+            "cue": "sandbox",
+            "support": 575,
+            "precision": 0.449,
+            "lift": 2.54
+          },
+          {
+            "cue": "guest",
+            "support": 877,
+            "precision": 0.455,
+            "lift": 2.57
+          },
+          {
+            "cue": "hypervisor",
+            "support": 133,
+            "precision": 0.534,
+            "lift": 3.02
+          },
+          {
+            "cue": "guest os",
+            "support": 229,
+            "precision": 0.585,
+            "lift": 3.31
+          },
+          {
+            "cue": "host os",
+            "support": 73,
+            "precision": 0.589,
+            "lift": 3.33
+          },
+          {
+            "cue": "other users",
+            "support": 420,
+            "precision": 0.269,
+            "lift": 1.52
+          },
+          {
+            "cue": "victim's browser",
+            "support": 136,
+            "precision": 0.897,
+            "lift": 5.07
+          },
+          {
+            "cue": "trusted execution environment",
+            "support": 14,
+            "precision": 0.286,
+            "lift": 1.62
+          },
+          {
+            "cue": "javascript",
+            "support": 2859,
+            "precision": 0.758,
+            "lift": 4.29
+          }
+        ],
+        "dropped": [
+          {
+            "cue": "virtual machine escape",
+            "support": 0,
+            "precision": 0.0,
+            "lift": 0.0
+          },
+          {
+            "cue": "container escape",
+            "support": 4,
+            "precision": 0.5,
+            "lift": 2.83
+          },
+          {
+            "cue": "escape the container",
+            "support": 6,
+            "precision": 0.667,
+            "lift": 3.77
+          },
+          {
+            "cue": "server-side request forgery",
+            "support": 404,
+            "precision": 0.116,
+            "lift": 0.66
+          },
+          {
+            "cue": "ssrf",
+            "support": 647,
+            "precision": 0.178,
+            "lift": 1.01
+          },
+          {
+            "cue": "trustzone",
+            "support": 37,
+            "precision": 0.054,
+            "lift": 0.31
+          },
+          {
+            "cue": "secure world",
+            "support": 10,
+            "precision": 0.1,
+            "lift": 0.57
+          }
+        ]
+      },
+      {
+        "question": "Otherwise: does the impact stay inside the vulnerable component?",
+        "label": "U",
+        "label_name": "Unchanged",
+        "base_rate": 0.8231,
+        "cues": [
+          {
+            "cue": "in the context of the current user",
+            "support": 563,
+            "precision": 0.989,
+            "lift": 1.2
+          },
+          {
+            "cue": "application crash",
+            "support": 896,
+            "precision": 0.999,
+            "lift": 1.21
+          },
+          {
+            "cue": "sql injection",
+            "support": 4930,
+            "precision": 0.996,
+            "lift": 1.21
+          }
+        ],
+        "dropped": [
+          {
+            "cue": "the affected application",
+            "support": 202,
+            "precision": 0.936,
+            "lift": 1.14
+          },
+          {
+            "cue": "denial of service",
+            "support": 11324,
+            "precision": 0.941,
+            "lift": 1.14
+          },
+          {
+            "cue": "buffer overflow",
+            "support": 5061,
+            "precision": 0.963,
+            "lift": 1.17
+          },
+          {
+            "cue": "command injection",
+            "support": 2058,
+            "precision": 0.972,
+            "lift": 1.18
+          },
+          {
+            "cue": "information disclosure",
+            "support": 3768,
+            "precision": 0.962,
+            "lift": 1.17
+          },
+          {
+            "cue": "privilege escalation",
+            "support": 1452,
+            "precision": 0.933,
+            "lift": 1.13
+          },
+          {
+            "cue": "local users",
+            "support": 1327,
+            "precision": 0.966,
+            "lift": 1.17
+          },
+          {
+            "cue": "kernel",
+            "support": 3814,
+            "precision": 0.958,
+            "lift": 1.16
+          }
+        ]
+      }
+    ],
+    "c": [
+      {
+        "question": "Can the attacker read all / any restricted data (total loss of confidentiality)?",
+        "label": "H",
+        "label_name": "High",
+        "base_rate": 0.5754,
+        "cues": [
+          {
+            "cue": "execute arbitrary code",
+            "support": 5867,
+            "precision": 0.937,
+            "lift": 1.63
+          },
+          {
+            "cue": "arbitrary code execution",
+            "support": 1910,
+            "precision": 0.987,
+            "lift": 1.72
+          },
+          {
+            "cue": "remote code execution",
+            "support": 3773,
+            "precision": 0.977,
+            "lift": 1.7
+          },
+          {
+            "cue": "code execution",
+            "support": 6993,
+            "precision": 0.969,
+            "lift": 1.68
+          },
+          {
+            "cue": "execute arbitrary commands",
+            "support": 900,
+            "precision": 0.979,
+            "lift": 1.7
+          },
+          {
+            "cue": "arbitrary commands",
+            "support": 1142,
+            "precision": 0.976,
+            "lift": 1.7
+          },
+          {
+            "cue": "command injection",
+            "support": 2058,
+            "precision": 0.985,
+            "lift": 1.71
+          },
+          {
+            "cue": "sql injection",
+            "support": 4930,
+            "precision": 0.975,
+            "lift": 1.69
+          },
+          {
+            "cue": "read arbitrary files",
+            "support": 384,
+            "precision": 0.898,
+            "lift": 1.56
+          },
+          {
+            "cue": "arbitrary file read",
+            "support": 110,
+            "precision": 0.955,
+            "lift": 1.66
+          },
+          {
+            "cue": "full control",
+            "support": 125,
+            "precision": 0.912,
+            "lift": 1.58
+          },
+          {
+            "cue": "take over",
+            "support": 132,
+            "precision": 0.788,
+            "lift": 1.37
+          },
+          {
+            "cue": "takeover",
+            "support": 491,
+            "precision": 0.9,
+            "lift": 1.56
+          },
+          {
+            "cue": "complete compromise",
+            "support": 37,
+            "precision": 0.946,
+            "lift": 1.64
+          },
+          {
+            "cue": "gain root",
+            "support": 160,
+            "precision": 0.994,
+            "lift": 1.73
+          },
+          {
+            "cue": "gain privileges",
+            "support": 759,
+            "precision": 0.975,
+            "lift": 1.69
+          },
+          {
+            "cue": "escalate privileges",
+            "support": 570,
+            "precision": 0.944,
+            "lift": 1.64
+          },
+          {
+            "cue": "privilege escalation",
+            "support": 1452,
+            "precision": 0.921,
+            "lift": 1.6
+          },
+          {
+            "cue": "elevation of privilege",
+            "support": 1391,
+            "precision": 0.914,
+            "lift": 1.59
+          },
+          {
+            "cue": "password",
+            "support": 2850,
+            "precision": 0.799,
+            "lift": 1.39
+          },
+          {
+            "cue": "passwords",
+            "support": 813,
+            "precision": 0.889,
+            "lift": 1.55
+          },
+          {
+            "cue": "private key",
+            "support": 173,
+            "precision": 0.827,
+            "lift": 1.44
+          },
+          {
+            "cue": "decrypt",
+            "support": 324,
+            "precision": 0.904,
+            "lift": 1.57
+          },
+          {
+            "cue": "plaintext",
+            "support": 235,
+            "precision": 0.851,
+            "lift": 1.48
+          },
+          {
+            "cue": "cleartext",
+            "support": 504,
+            "precision": 0.891,
+            "lift": 1.55
+          },
+          {
+            "cue": "sensitive data",
+            "support": 583,
+            "precision": 0.846,
+            "lift": 1.47
+          },
+          {
+            "cue": "database",
+            "support": 1886,
+            "precision": 0.744,
+            "lift": 1.29
+          },
+          {
+            "cue": "hard-coded",
+            "support": 371,
+            "precision": 0.898,
+            "lift": 1.56
+          },
+          {
+            "cue": "hardcoded",
+            "support": 318,
+            "precision": 0.925,
+            "lift": 1.61
+          },
+          {
+            "cue": "authentication bypass",
+            "support": 601,
+            "precision": 0.86,
+            "lift": 1.5
+          },
+          {
+            "cue": "use-after-free",
+            "support": 1155,
+            "precision": 0.775,
+            "lift": 1.35
+          },
+          {
+            "cue": "out-of-bounds write",
+            "support": 802,
+            "precision": 0.84,
+            "lift": 1.46
+          },
+          {
+            "cue": "memory corruption",
+            "support": 2767,
+            "precision": 0.922,
+            "lift": 1.6
+          }
+        ],
+        "dropped": [
+          {
+            "cue": "credentials",
+            "support": 3051,
+            "precision": 0.649,
+            "lift": 1.13
+          }
+        ]
+      },
+      {
+        "question": "Can the attacker read only some restricted data, without control over what?",
+        "label": "L",
+        "label_name": "Low",
+        "base_rate": 0.2071,
+        "cues": [
+          {
+            "cue": "disclose",
+            "support": 678,
+            "precision": 0.279,
+            "lift": 1.35
+          },
+          {
+            "cue": "obtain sensitive information",
+            "support": 1374,
+            "precision": 0.281,
+            "lift": 1.36
+          },
+          {
+            "cue": "information exposure",
+            "support": 281,
+            "precision": 0.406,
+            "lift": 1.96
+          },
+          {
+            "cue": "enumerate",
+            "support": 233,
+            "precision": 0.742,
+            "lift": 3.59
+          },
+          {
+            "cue": "enumeration",
+            "support": 163,
+            "precision": 0.663,
+            "lift": 3.2
+          },
+          {
+            "cue": "username enumeration",
+            "support": 21,
+            "precision": 0.905,
+            "lift": 4.37
+          },
+          {
+            "cue": "path disclosure",
+            "support": 33,
+            "precision": 0.848,
+            "lift": 4.1
+          },
+          {
+            "cue": "partial",
+            "support": 519,
+            "precision": 0.32,
+            "lift": 1.54
+          },
+          {
+            "cue": "limited information",
+            "support": 29,
+            "precision": 0.966,
+            "lift": 4.66
+          },
+          {
+            "cue": "obtain information",
+            "support": 122,
+            "precision": 0.328,
+            "lift": 1.58
+          },
+          {
+            "cue": "cross-site scripting",
+            "support": 7844,
+            "precision": 0.976,
+            "lift": 4.71
+          },
+          {
+            "cue": "xss",
+            "support": 9917,
+            "precision": 0.97,
+            "lift": 4.69
+          },
+          {
+            "cue": "inject arbitrary web script",
+            "support": 941,
+            "precision": 0.994,
+            "lift": 4.8
+          },
+          {
+            "cue": "metadata",
+            "support": 304,
+            "precision": 0.309,
+            "lift": 1.49
+          },
+          {
+            "cue": "open redirect",
+            "support": 395,
+            "precision": 0.916,
+            "lift": 4.43
+          }
+        ],
+        "dropped": [
+          {
+            "cue": "information disclosure",
+            "support": 3768,
+            "precision": 0.143,
+            "lift": 0.69
+          },
+          {
+            "cue": "information leak",
+            "support": 260,
+            "precision": 0.204,
+            "lift": 0.98
+          },
+          {
+            "cue": "leak",
+            "support": 1511,
+            "precision": 0.132,
+            "lift": 0.64
+          },
+          {
+            "cue": "version",
+            "support": 11471,
+            "precision": 0.22,
+            "lift": 1.06
+          },
+          {
+            "cue": "out-of-bounds read",
+            "support": 1358,
+            "precision": 0.071,
+            "lift": 0.34
+          }
+        ]
+      },
+      {
+        "question": "Otherwise: is there no confidentiality impact (e.g. pure availability bug)?",
+        "label": "N",
+        "label_name": "None",
+        "base_rate": 0.2175,
+        "cues": [
+          {
+            "cue": "denial of service",
+            "support": 11324,
+            "precision": 0.704,
+            "lift": 3.24
+          },
+          {
+            "cue": "crash",
+            "support": 4504,
+            "precision": 0.711,
+            "lift": 3.27
+          },
+          {
+            "cue": "infinite loop",
+            "support": 382,
+            "precision": 0.979,
+            "lift": 4.5
+          },
+          {
+            "cue": "resource consumption",
+            "support": 207,
+            "precision": 0.952,
+            "lift": 4.37
+          },
+          {
+            "cue": "memory exhaustion",
+            "support": 83,
+            "precision": 0.988,
+            "lift": 4.54
+          },
+          {
+            "cue": "resource exhaustion",
+            "support": 138,
+            "precision": 0.855,
+            "lift": 3.93
+          },
+          {
+            "cue": "hang",
+            "support": 709,
+            "precision": 0.945,
+            "lift": 4.34
+          },
+          {
+            "cue": "dos",
+            "support": 3281,
+            "precision": 0.834,
+            "lift": 3.83
+          },
+          {
+            "cue": "reboot",
+            "support": 383,
+            "precision": 0.804,
+            "lift": 3.7
+          },
+          {
+            "cue": "null pointer dereference",
+            "support": 1261,
+            "precision": 0.872,
+            "lift": 4.01
+          },
+          {
+            "cue": "assertion failure",
+            "support": 162,
+            "precision": 0.951,
+            "lift": 4.37
+          },
+          {
+            "cue": "cpu consumption",
+            "support": 67,
+            "precision": 0.985,
+            "lift": 4.53
+          },
+          {
+            "cue": "cross-site request forgery",
+            "support": 1946,
+            "precision": 0.277,
+            "lift": 1.28
+          },
+          {
+            "cue": "csrf",
+            "support": 2862,
+            "precision": 0.265,
+            "lift": 1.22
+          },
+          {
+            "cue": "uncontrolled recursion",
+            "support": 38,
+            "precision": 0.974,
+            "lift": 4.48
+          },
+          {
+            "cue": "panic",
+            "support": 234,
+            "precision": 0.838,
+            "lift": 3.85
+          }
+        ],
+        "dropped": []
+      }
+    ],
+    "i": [
+      {
+        "question": "Can the attacker modify any / all data or run code (total loss of integrity)?",
+        "label": "H",
+        "label_name": "High",
+        "base_rate": 0.4952,
+        "cues": [
+          {
+            "cue": "execute arbitrary code",
+            "support": 5867,
+            "precision": 0.92,
+            "lift": 1.86
+          },
+          {
+            "cue": "remote code execution",
+            "support": 3773,
+            "precision": 0.974,
+            "lift": 1.97
+          },
+          {
+            "cue": "code execution",
+            "support": 6993,
+            "precision": 0.964,
+            "lift": 1.95
+          },
+          {
+            "cue": "arbitrary commands",
+            "support": 1142,
+            "precision": 0.973,
+            "lift": 1.96
+          },
+          {
+            "cue": "command injection",
+            "support": 2058,
+            "precision": 0.983,
+            "lift": 1.98
+          },
+          {
+            "cue": "sql injection",
+            "support": 4930,
+            "precision": 0.871,
+            "lift": 1.76
+          },
+          {
+            "cue": "write arbitrary files",
+            "support": 84,
+            "precision": 0.964,
+            "lift": 1.95
+          },
+          {
+            "cue": "arbitrary file write",
+            "support": 92,
+            "precision": 0.967,
+            "lift": 1.95
+          },
+          {
+            "cue": "upload arbitrary files",
+            "support": 171,
+            "precision": 0.947,
+            "lift": 1.91
+          },
+          {
+            "cue": "arbitrary file upload",
+            "support": 321,
+            "precision": 0.941,
+            "lift": 1.9
+          },
+          {
+            "cue": "overwrite",
+            "support": 638,
+            "precision": 0.879,
+            "lift": 1.78
+          },
+          {
+            "cue": "delete arbitrary files",
+            "support": 159,
+            "precision": 0.918,
+            "lift": 1.85
+          },
+          {
+            "cue": "privilege escalation",
+            "support": 1452,
+            "precision": 0.937,
+            "lift": 1.89
+          },
+          {
+            "cue": "escalate privileges",
+            "support": 570,
+            "precision": 0.933,
+            "lift": 1.88
+          },
+          {
+            "cue": "gain privileges",
+            "support": 759,
+            "precision": 0.97,
+            "lift": 1.96
+          },
+          {
+            "cue": "full control",
+            "support": 125,
+            "precision": 0.92,
+            "lift": 1.86
+          },
+          {
+            "cue": "take over",
+            "support": 132,
+            "precision": 0.735,
+            "lift": 1.48
+          },
+          {
+            "cue": "out-of-bounds write",
+            "support": 802,
+            "precision": 0.839,
+            "lift": 1.69
+          },
+          {
+            "cue": "buffer overflow",
+            "support": 5061,
+            "precision": 0.766,
+            "lift": 1.55
+          },
+          {
+            "cue": "use-after-free",
+            "support": 1155,
+            "precision": 0.745,
+            "lift": 1.51
+          },
+          {
+            "cue": "memory corruption",
+            "support": 2767,
+            "precision": 0.912,
+            "lift": 1.84
+          },
+          {
+            "cue": "heap overflow",
+            "support": 242,
+            "precision": 0.769,
+            "lift": 1.55
+          },
+          {
+            "cue": "cross-site request forgery",
+            "support": 1946,
+            "precision": 0.774,
+            "lift": 1.56
+          },
+          {
+            "cue": "csrf",
+            "support": 2862,
+            "precision": 0.799,
+            "lift": 1.61
+          },
+          {
+            "cue": "authentication bypass",
+            "support": 601,
+            "precision": 0.839,
+            "lift": 1.69
+          }
+        ],
+        "dropped": []
+      },
+      {
+        "question": "Can the attacker modify only some data, with limited consequence?",
+        "label": "L",
+        "label_name": "Low",
+        "base_rate": 0.1933,
+        "cues": [
+          {
+            "cue": "cross-site scripting",
+            "support": 7844,
+            "precision": 0.979,
+            "lift": 5.07
+          },
+          {
+            "cue": "xss",
+            "support": 9917,
+            "precision": 0.972,
+            "lift": 5.03
+          },
+          {
+            "cue": "inject arbitrary web script",
+            "support": 941,
+            "precision": 0.999,
+            "lift": 5.17
+          },
+          {
+            "cue": "html injection",
+            "support": 156,
+            "precision": 0.904,
+            "lift": 4.67
+          },
+          {
+            "cue": "web script or html",
+            "support": 991,
+            "precision": 0.999,
+            "lift": 5.17
+          },
+          {
+            "cue": "open redirect",
+            "support": 395,
+            "precision": 0.932,
+            "lift": 4.82
+          },
+          {
+            "cue": "redirect users",
+            "support": 137,
+            "precision": 0.861,
+            "lift": 4.45
+          },
+          {
+            "cue": "spoof",
+            "support": 494,
+            "precision": 0.318,
+            "lift": 1.64
+          },
+          {
+            "cue": "spoofing",
+            "support": 427,
+            "precision": 0.429,
+            "lift": 2.22
+          },
+          {
+            "cue": "content spoofing",
+            "support": 18,
+            "precision": 0.778,
+            "lift": 4.02
+          },
+          {
+            "cue": "log injection",
+            "support": 15,
+            "precision": 0.467,
+            "lift": 2.41
+          },
+          {
+            "cue": "header injection",
+            "support": 80,
+            "precision": 0.7,
+            "lift": 3.62
+          },
+          {
+            "cue": "crlf injection",
+            "support": 49,
+            "precision": 0.878,
+            "lift": 4.54
+          },
+          {
+            "cue": "modify some",
+            "support": 12,
+            "precision": 0.917,
+            "lift": 4.74
+          }
+        ],
+        "dropped": [
+          {
+            "cue": "tamper",
+            "support": 104,
+            "precision": 0.135,
+            "lift": 0.7
+          }
+        ]
+      },
+      {
+        "question": "Otherwise: is there no integrity impact (read-only or availability-only bug)?",
+        "label": "N",
+        "label_name": "None",
+        "base_rate": 0.3114,
+        "cues": [
+          {
+            "cue": "denial of service",
+            "support": 11324,
+            "precision": 0.715,
+            "lift": 2.29
+          },
+          {
+            "cue": "crash",
+            "support": 4504,
+            "precision": 0.729,
+            "lift": 2.34
+          },
+          {
+            "cue": "information disclosure",
+            "support": 3768,
+            "precision": 0.863,
+            "lift": 2.77
+          },
+          {
+            "cue": "disclose",
+            "support": 678,
+            "precision": 0.895,
+            "lift": 2.87
+          },
+          {
+            "cue": "obtain sensitive information",
+            "support": 1374,
+            "precision": 0.793,
+            "lift": 2.55
+          },
+          {
+            "cue": "read arbitrary files",
+            "support": 384,
+            "precision": 0.88,
+            "lift": 2.83
+          },
+          {
+            "cue": "out-of-bounds read",
+            "support": 1358,
+            "precision": 0.708,
+            "lift": 2.27
+          },
+          {
+            "cue": "information leak",
+            "support": 260,
+            "precision": 0.8,
+            "lift": 2.57
+          },
+          {
+            "cue": "information exposure",
+            "support": 281,
+            "precision": 0.883,
+            "lift": 2.83
+          },
+          {
+            "cue": "enumerate",
+            "support": 233,
+            "precision": 0.914,
+            "lift": 2.94
+          },
+          {
+            "cue": "resource exhaustion",
+            "support": 138,
+            "precision": 0.855,
+            "lift": 2.75
+          },
+          {
+            "cue": "infinite loop",
+            "support": 382,
+            "precision": 0.987,
+            "lift": 3.17
+          },
+          {
+            "cue": "null pointer dereference",
+            "support": 1261,
+            "precision": 0.874,
+            "lift": 2.81
+          },
+          {
+            "cue": "memory leak",
+            "support": 549,
+            "precision": 0.938,
+            "lift": 3.01
+          },
+          {
+            "cue": "hang",
+            "support": 709,
+            "precision": 0.863,
+            "lift": 2.77
+          },
+          {
+            "cue": "dos",
+            "support": 3281,
+            "precision": 0.812,
+            "lift": 2.61
+          }
+        ],
+        "dropped": []
+      }
+    ],
+    "a": [
+      {
+        "question": "Can the attacker fully deny access to the component (crash, hang, exhaustion)?",
+        "label": "H",
+        "label_name": "High",
+        "base_rate": 0.5752,
+        "cues": [
+          {
+            "cue": "denial of service",
+            "support": 11324,
+            "precision": 0.933,
+            "lift": 1.62
+          },
+          {
+            "cue": "crash",
+            "support": 4504,
+            "precision": 0.971,
+            "lift": 1.69
+          },
+          {
+            "cue": "reboot",
+            "support": 383,
+            "precision": 0.935,
+            "lift": 1.63
+          },
+          {
+            "cue": "infinite loop",
+            "support": 382,
+            "precision": 0.982,
+            "lift": 1.71
+          },
+          {
+            "cue": "resource exhaustion",
+            "support": 138,
+            "precision": 0.957,
+            "lift": 1.66
+          },
+          {
+            "cue": "memory exhaustion",
+            "support": 83,
+            "precision": 0.952,
+            "lift": 1.65
+          },
+          {
+            "cue": "cpu consumption",
+            "support": 67,
+            "precision": 0.985,
+            "lift": 1.71
+          },
+          {
+            "cue": "hang",
+            "support": 709,
+            "precision": 0.982,
+            "lift": 1.71
+          },
+          {
+            "cue": "out of memory",
+            "support": 71,
+            "precision": 0.958,
+            "lift": 1.67
+          },
+          {
+            "cue": "execute arbitrary code",
+            "support": 5867,
+            "precision": 0.923,
+            "lift": 1.61
+          },
+          {
+            "cue": "remote code execution",
+            "support": 3773,
+            "precision": 0.974,
+            "lift": 1.69
+          },
+          {
+            "cue": "code execution",
+            "support": 6993,
+            "precision": 0.965,
+            "lift": 1.68
+          },
+          {
+            "cue": "buffer overflow",
+            "support": 5061,
+            "precision": 0.968,
+            "lift": 1.68
+          },
+          {
+            "cue": "use-after-free",
+            "support": 1155,
+            "precision": 0.964,
+            "lift": 1.68
+          },
+          {
+            "cue": "null pointer dereference",
+            "support": 1261,
+            "precision": 0.983,
+            "lift": 1.71
+          },
+          {
+            "cue": "segmentation fault",
+            "support": 309,
+            "precision": 0.984,
+            "lift": 1.71
+          },
+          {
+            "cue": "assertion failure",
+            "support": 162,
+            "precision": 0.963,
+            "lift": 1.67
+          },
+          {
+            "cue": "kernel panic",
+            "support": 68,
+            "precision": 1.0,
+            "lift": 1.74
+          },
+          {
+            "cue": "panic",
+            "support": 234,
+            "precision": 0.962,
+            "lift": 1.67
+          },
+          {
+            "cue": "unavailable",
+            "support": 221,
+            "precision": 0.715,
+            "lift": 1.24
+          },
+          {
+            "cue": "stack exhaustion",
+            "support": 50,
+            "precision": 0.98,
+            "lift": 1.7
+          },
+          {
+            "cue": "uncontrolled recursion",
+            "support": 38,
+            "precision": 0.974,
+            "lift": 1.69
+          },
+          {
+            "cue": "memory leak",
+            "support": 549,
+            "precision": 0.907,
+            "lift": 1.58
+          },
+          {
+            "cue": "dos",
+            "support": 3281,
+            "precision": 0.853,
+            "lift": 1.48
+          },
+          {
+            "cue": "command injection",
+            "support": 2058,
+            "precision": 0.98,
+            "lift": 1.7
+          },
+          {
+            "cue": "out-of-bounds write",
+            "support": 802,
+            "precision": 0.976,
+            "lift": 1.7
+          },
+          {
+            "cue": "memory corruption",
+            "support": 2767,
+            "precision": 0.98,
+            "lift": 1.7
+          }
+        ],
+        "dropped": []
+      },
+      {
+        "question": "Is availability only reduced or interrupted partially?",
+        "label": "L",
+        "label_name": "Low",
+        "base_rate": 0.0221,
+        "cues": [
+          {
+            "cue": "performance degradation",
+            "support": 11,
+            "precision": 0.182,
+            "lift": 8.22
+          },
+          {
+            "cue": "partial denial of service",
+            "support": 389,
+            "precision": 0.977,
+            "lift": 44.16
+          },
+          {
+            "cue": "degradation",
+            "support": 22,
+            "precision": 0.227,
+            "lift": 10.28
+          },
+          {
+            "cue": "slow down",
+            "support": 12,
+            "precision": 0.5,
+            "lift": 22.61
+          },
+          {
+            "cue": "temporary",
+            "support": 320,
+            "precision": 0.062,
+            "lift": 2.83
+          },
+          {
+            "cue": "temporarily",
+            "support": 150,
+            "precision": 0.227,
+            "lift": 10.25
+          },
+          {
+            "cue": "limited denial",
+            "support": 18,
+            "precision": 0.889,
+            "lift": 40.19
+          },
+          {
+            "cue": "rate limit",
+            "support": 19,
+            "precision": 0.211,
+            "lift": 9.52
+          }
+        ],
+        "dropped": [
+          {
+            "cue": "degrade",
+            "support": 6,
+            "precision": 0.167,
+            "lift": 7.54
+          },
+          {
+            "cue": "slowdown",
+            "support": 6,
+            "precision": 0.333,
+            "lift": 15.07
+          },
+          {
+            "cue": "reduced performance",
+            "support": 1,
+            "precision": 1.0,
+            "lift": 45.21
+          },
+          {
+            "cue": "some resources",
+            "support": 7,
+            "precision": 0.0,
+            "lift": 0.0
+          },
+          {
+            "cue": "log flooding",
+            "support": 0,
+            "precision": 0.0,
+            "lift": 0.0
+          }
+        ]
+      },
+      {
+        "question": "Otherwise: is there no availability impact (read / modify data only)?",
+        "label": "N",
+        "label_name": "None",
+        "base_rate": 0.4027,
+        "cues": [
+          {
+            "cue": "information disclosure",
+            "support": 3768,
+            "precision": 0.85,
+            "lift": 2.11
+          },
+          {
+            "cue": "cross-site scripting",
+            "support": 7844,
+            "precision": 0.983,
+            "lift": 2.44
+          },
+          {
+            "cue": "xss",
+            "support": 9917,
+            "precision": 0.975,
+            "lift": 2.42
+          },
+          {
+            "cue": "obtain sensitive information",
+            "support": 1374,
+            "precision": 0.834,
+            "lift": 2.07
+          },
+          {
+            "cue": "disclose",
+            "support": 678,
+            "precision": 0.885,
+            "lift": 2.2
+          },
+          {
+            "cue": "open redirect",
+            "support": 395,
+            "precision": 0.982,
+            "lift": 2.44
+          },
+          {
+            "cue": "spoof",
+            "support": 494,
+            "precision": 0.862,
+            "lift": 2.14
+          },
+          {
+            "cue": "spoofing",
+            "support": 427,
+            "precision": 0.845,
+            "lift": 2.1
+          },
+          {
+            "cue": "information leak",
+            "support": 260,
+            "precision": 0.727,
+            "lift": 1.81
+          },
+          {
+            "cue": "information exposure",
+            "support": 281,
+            "precision": 0.875,
+            "lift": 2.17
+          },
+          {
+            "cue": "enumerate",
+            "support": 233,
+            "precision": 0.94,
+            "lift": 2.33
+          },
+          {
+            "cue": "inject arbitrary web script",
+            "support": 941,
+            "precision": 1.0,
+            "lift": 2.48
+          },
+          {
+            "cue": "path disclosure",
+            "support": 33,
+            "precision": 0.97,
+            "lift": 2.41
+          }
+        ],
+        "dropped": [
+          {
+            "cue": "csrf",
+            "support": 2862,
+            "precision": 0.313,
+            "lift": 0.78
+          },
+          {
+            "cue": "cross-site request forgery",
+            "support": 1946,
+            "precision": 0.302,
+            "lift": 0.75
+          },
+          {
+            "cue": "out-of-bounds read",
+            "support": 1358,
+            "precision": 0.262,
+            "lift": 0.65
+          }
+        ]
+      }
+    ]
+  }
+}

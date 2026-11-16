@@ -125,3 +125,10 @@ explain:
   sensitivity_perturbations: 8
   sensitivity_radius: 0.02
   deletion_steps: 10
+
+# ---------------------------------------------------------------------
+# Serving (predict.py and app.py): which trained run to load from models/
+# ---------------------------------------------------------------------
+serve:
+  run: full_all-MiniLM-L6-v2_random_budget_s42
+  baseline_run: mean_all-MiniLM-L6-v2_random_budget_s42

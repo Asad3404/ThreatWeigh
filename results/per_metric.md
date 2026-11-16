@@ -1,0 +1,18 @@
+| model | metric | accuracy | macro_precision | macro_recall | macro_f1 |
+|---|---|---|---|---|---|
+| TF-IDF + LogReg [random_budget] | AV | 88.89 | 86.34 | 47.83 | 52.41 |
+| TF-IDF + LogReg [random_budget] | AC | 95.63 | 95.77 | 64.20 | 70.83 |
+| TF-IDF + LogReg [random_budget] | PR | 80.91 | 79.68 | 66.27 | 70.40 |
+| TF-IDF + LogReg [random_budget] | UI | 91.04 | 91.42 | 88.73 | 89.84 |
+| TF-IDF + LogReg [random_budget] | S | 95.28 | 96.80 | 87.48 | 91.29 |
+| TF-IDF + LogReg [random_budget] | C | 83.53 | 85.16 | 77.71 | 80.66 |
+| TF-IDF + LogReg [random_budget] | I | 84.51 | 86.13 | 82.52 | 84.03 |
+| TF-IDF + LogReg [random_budget] | A | 87.24 | 85.21 | 64.03 | 67.06 |
+| TF-IDF + LogReg [random_quick] | AV | 85.00 | 42.98 | 38.01 | 39.38 |
+| TF-IDF + LogReg [random_quick] | AC | 95.40 | 47.70 | 50.00 | 48.82 |
+| TF-IDF + LogReg [random_quick] | PR | 71.00 | 70.48 | 53.03 | 55.76 |
+| TF-IDF + LogReg [random_quick] | UI | 88.40 | 89.37 | 83.95 | 85.92 |
+| TF-IDF + LogReg [random_quick] | S | 94.60 | 96.96 | 83.73 | 88.72 |
+| TF-IDF + LogReg [random_quick] | C | 76.00 | 82.00 | 65.51 | 69.41 |
+| TF-IDF + LogReg [random_quick] | I | 74.80 | 78.07 | 70.73 | 73.32 |
+| TF-IDF + LogReg [random_quick] | A | 85.40 | 57.01 | 57.33 | 57.05 |
