@@ -1,0 +1,41 @@
+{
+  "run": "tfidf-lr_random_full_s42",
+  "variant": "tfidf-lr",
+  "profile": "full",
+  "n_train": 109943,
+  "n_test": 13743,
+  "metrics": [
+    {
+      "metric": "av",
+      "test_acc": 0.9248344611802373
+    },
+    {
+      "metric": "ac",
+      "test_acc": 0.962671905697446
+    },
+    {
+      "metric": "pr",
+      "test_acc": 0.8543986029251255
+    },
+    {
+      "metric": "ui",
+      "test_acc": 0.9415702539474642
+    },
+    {
+      "metric": "s",
+      "test_acc": 0.9666739430983046
+    },
+    {
+      "metric": "c",
+      "test_acc": 0.8805937568216546
+    },
+    {
+      "metric": "i",
+      "test_acc": 0.8837226224259623
+    },
+    {
+      "metric": "a",
+      "test_acc": 0.8979844284362949
+    }
+  ]
+}

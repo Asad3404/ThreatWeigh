@@ -1,0 +1,41 @@
+{
+  "run": "quick_distil",
+  "variant": "cls",
+  "encoder": "distilbert-base-uncased",
+  "seed": 42,
+  "split": "random",
+  "profile": "quick",
+  "train_cfg": {
+    "lr": 2e-05,
+    "batch_size": 16,
+    "eval_batch_size": 128,
+    "epochs": 2,
+    "patience": 3,
+    "weight_decay": 0.01,
+    "max_train": 800,
+    "max_val": 300,
+    "max_test": 500,
+    "num_threads": 4
+  },
+  "symbolic": {
+    "weight_both": 10,
+    "weight_one": 1,
+    "weight_none": 0,
+    "offset": 1,
+    "eps": 1e-08
+  },
+  "n_train": 800,
+  "n_val": 300,
+  "n_test": 500,
+  "device": "cpu",
+  "metrics": [
+    {
+      "metric": "s",
+      "best_epoch": 2,
+      "val_acc": 0.9433333333333334,
+      "test_acc": 0.932,
+      "minutes": 2.1
+    }
+  ],
+  "total_minutes": 2.1
+}

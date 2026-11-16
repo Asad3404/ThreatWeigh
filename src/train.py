@@ -111,17 +111,57 @@ def make_collate(pad_id: int):
     return collate
 
 
+class BucketBatchSampler(torch.utils.data.Sampler):
+    """Groups texts of similar length into the same batch, so little time is spent
+    on padding (a large speed-up on CPU). It does not change the model or loss.
+
+    Training (shuffle=True): every epoch the rows are shuffled, cut into pools of
+    50 batches, each pool is sorted by length and cut into batches, and finally
+    the order of the batches is shuffled - so batches are still random.
+    Evaluation (shuffle=False): rows are simply sorted by length; `order` remembers
+    the permutation so predictions can be put back in the original row order."""
+
+    def __init__(self, lengths, batch_size: int, shuffle: bool, seed: int = 0, pool: int = 50):
+        self.lengths = np.asarray(lengths)
+        self.bs, self.shuffle, self.pool = batch_size, shuffle, pool
+        self.rng = np.random.default_rng(seed)
+        self.order = np.argsort(self.lengths, kind="stable")
+
+    def __iter__(self):
+        if not self.shuffle:
+            for k in range(0, len(self.order), self.bs):
+                yield self.order[k:k + self.bs].tolist()
+            return
+        idx = self.rng.permutation(len(self.lengths))
+        size = self.bs * self.pool
+        batches = []
+        for k in range(0, len(idx), size):
+            chunk = idx[k:k + size]
+            chunk = chunk[np.argsort(self.lengths[chunk], kind="stable")]
+            batches += [chunk[j:j + self.bs].tolist() for j in range(0, len(chunk), self.bs)]
+        for b in self.rng.permutation(len(batches)):
+            yield batches[b]
+
+    def __len__(self):
+        return (len(self.lengths) + self.bs - 1) // self.bs
+
+
 # ---------------------------------------------------------------------------
 # Train / evaluate
 # ---------------------------------------------------------------------------
 @torch.no_grad()
 def predict_proba(model, loader, device) -> np.ndarray:
+    """Class probabilities in the ORIGINAL row order of the split."""
     model.eval()
     out = []
     for ids, mask, w, _ in loader:
         logits = model(ids.to(device), mask.to(device), w.to(device))
         out.append(torch.softmax(logits, -1).float().cpu().numpy())
-    return np.concatenate(out)
+    probs = np.concatenate(out)
+    order = loader.batch_sampler.order          # row index of each prediction
+    restored = np.empty_like(probs)
+    restored[order] = probs
+    return restored
 
 
 def train_one_metric(metric, splits_enc, args, cfg, lex, keywords, device, run_dir, models_dir):
@@ -137,9 +177,9 @@ def train_one_metric(metric, splits_enc, args, cfg, lex, keywords, device, run_d
         y = [lab2id[v] for v in enc.df[metric]]
         w = enc.weights(args.variant, metric, lex, keywords, cfg["symbolic"])
         ds = MetricDataset(enc.input_ids, w, y)
-        g = torch.Generator().manual_seed(args.seed)
-        loaders[name] = DataLoader(ds, batch_size=tcfg["batch_size"] if name == "train" else tcfg["eval_batch_size"],
-                                   shuffle=(name == "train"), collate_fn=collate, generator=g)
+        bs = tcfg["batch_size"] if name == "train" else tcfg["eval_batch_size"]
+        sampler = BucketBatchSampler([len(i) for i in enc.input_ids], bs, shuffle=(name == "train"), seed=args.seed)
+        loaders[name] = DataLoader(ds, batch_sampler=sampler, collate_fn=collate)
 
     set_seed(args.seed)   # same initialisation for the pooling/classifier layers in every variant
     model = ThreatWeighModel(args.encoder, len(labels), pooling=POOLING[args.variant],

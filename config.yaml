@@ -77,7 +77,7 @@ train:
   max_train: null        # null = use every training row
   max_val: null
   max_test: null
-  num_threads: null      # torch CPU threads (null = torch default)
+  num_threads: 4         # torch CPU threads (null = torch default)
 
 profiles:
   # Smoke test that must run on any laptop CPU in a few minutes.
@@ -90,10 +90,10 @@ profiles:
   # with no GPU (see README "Compute budget"). Same lr / batch size as
   # the paper, but a stratified training subsample and fewer epochs.
   budget:
-    epochs: 4
+    epochs: 3
     patience: 2
-    max_train: 6000
-    max_val: 1500
+    max_train: 4000
+    max_val: 1000
     max_test: null       # always evaluate on the FULL test split
 
 # ---------------------------------------------------------------------

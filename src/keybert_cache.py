@@ -13,7 +13,8 @@ Settings follow the paper:
   * stop_words = None                -> no stop-word filtering
   * use_mmr = False                  -> plain cosine ranking, no diversification
 
-Output: data/keybert/keywords_<encoder>.json  {CVE-ID: [kw1, ..., kw5]}
+Output: data/keybert/keywords_<encoder>.json  {CVE-ID: {"h": text-hash, "kw": [kw1, ..., kw5]}}
+The text hash means an entry is recomputed automatically if a description changes.
 
 Note on equivalence: KeyBERT ranks the candidate words OF EACH DOCUMENT by
 cosine similarity to that document's embedding. Passing documents in chunks
@@ -22,6 +23,7 @@ only changes which vocabulary is embedded at once, not the result per doc.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import time
 
 import pandas as pd
@@ -35,11 +37,16 @@ def cache_path(cfg: dict):
     return project_path(cfg["paths"]["keybert_dir"]) / f"keywords_{name}.json"
 
 
+def text_hash(text: str) -> str:
+    return hashlib.md5(text.encode("utf-8")).hexdigest()[:12]
+
+
 def load_keywords(cfg: dict) -> dict[str, list[str]]:
+    """{CVE-ID: [keywords]} from the cache."""
     p = cache_path(cfg)
     if not p.exists():
         raise FileNotFoundError(f"{p} missing - run `python -m src.keybert_cache` first.")
-    return load_json(p)
+    return {k: v["kw"] if isinstance(v, dict) else v for k, v in load_json(p).items()}
 
 
 def extract(texts: list[str], cfg: dict, chunk: int = 2000) -> list[list[str]]:
@@ -77,19 +84,22 @@ def main():
     df = pd.concat([load_split(s, cfg) for s in ("train", "val", "test")], ignore_index=True)
     path = cache_path(cfg)
     cache = load_json(path) if path.exists() else {}
-    todo = df[~df.ID.isin(cache)]
+    hashes = df.text.map(text_hash)
+    # an entry is valid only if it was computed on exactly this text
+    valid = [isinstance(cache.get(i), dict) and cache[i]["h"] == h for i, h in zip(df.ID, hashes)]
+    todo = df[~pd.Series(valid, index=df.index)]
     if args.limit:
         todo = todo.head(args.limit)
     print(f"{len(cache)} cached, {len(todo)} to compute with {cfg['model']['encoder']}")
     t0 = time.time()
     if len(todo):
         kws = extract(todo.text.tolist(), cfg)
-        cache.update(dict(zip(todo.ID, kws)))
+        cache.update({i: {"h": text_hash(t), "kw": k} for i, t, k in zip(todo.ID, todo.text, kws)})
         save_json(cache, path)
     dt = time.time() - t0
     print(f"done in {dt:.0f}s ({len(todo) / max(dt, 1e-9):.0f} docs/s) -> {path}")
     for _, r in todo.head(3).iterrows():
-        print(f"\n{r.ID}: {r.text[:150]}...\n  keywords: {cache[r.ID]}")
+        print(f"\n{r.ID}: {r.text[:150]}...\n  keywords: {cache[r.ID]['kw']}")
 
 
 if __name__ == "__main__":
