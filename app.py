@@ -6,7 +6,7 @@ ThreatWeigh - Streamlit app.
 Tabs
   1. Predict        - type a CVE description, get the 8 metrics, vector, score, severity
                       and the words the model relied on (Integrated Gradients)
-  2. Model results  - comparison tables, ablation, seed variance, weight sensitivity
+  2. Model results  - comparison tables, significance, ablation, weight sensitivity, temporal, explanations
   3. How it works   - plain-language explanation and the pipeline diagram
 """
 from __future__ import annotations
@@ -140,7 +140,9 @@ with tab_res:
     show("weight_sensitivity", "Sensitivity to the 'both' weight (10 in the paper)")
     show("temporal", "Time-aware split (train ≤2021, test ≥2023)")
     show("per_metric", "Per-metric accuracy / macro-precision / macro-recall / macro-F1")
-    show("explain_summary", "Explanation quality (lower is better except top_in_lexicon)")
+    show("symbolic_weight_stats", "How often the symbolic weight fires (test split)")
+    show("explain_summary", "Explanation quality, 300 test CVEs (lower is better except top_in_lexicon)")
+    show("explain_paired_tests", "Explanation quality: paired Wilcoxon tests, ThreatWeigh vs SBERT")
     show("lexicon_coverage", "Expert-lexicon coverage on the test split")
 
 # ----------------------------------------------------------- How it works ---

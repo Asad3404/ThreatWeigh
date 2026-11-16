@@ -287,6 +287,25 @@ def quantitative(run: str, label: str, sample: pd.DataFrame, keywords: dict, cfg
     return pd.DataFrame(rows), examples
 
 
+def paired_tests(per: pd.DataFrame, a: str = "ThreatWeigh") -> pd.DataFrame:
+    """Paired Wilcoxon signed-rank tests, model `a` vs every other model, on the same (metric, CVE) pairs."""
+    from scipy.stats import wilcoxon
+
+    cols = [c for c in per.columns if c.startswith(("noise_rate", "top_in_lexicon", "deletion_auc", "infidelity",
+                                                     "sensitivity")) and c != "deletion_auc_random"]
+    A = per[per.model == a].set_index(["metric", "ID"])
+    rows = []
+    for other in sorted(set(per.model) - {a}):
+        B = per[per.model == other].set_index(["metric", "ID"])
+        for c in cols:
+            x = pd.concat([A[c], B[c]], axis=1, keys=["a", "b"]).dropna()
+            d = x.a - x.b
+            p = wilcoxon(x.a, x.b, zero_method="zsplit").pvalue if (d != 0).any() else 1.0
+            rows.append({"measure": c, "vs": other, "n_pairs": len(x), a: round(x.a.mean(), 4),
+                         "other": round(x.b.mean(), 4), "diff": round(d.mean(), 4), "wilcoxon_p": float(f"{p:.3g}")})
+    return pd.DataFrame(rows)
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--tw", required=True, help="ThreatWeigh run name (needs --save-model weights)")
@@ -320,6 +339,9 @@ def main():
     summary.to_csv(res / f"explain_summary{args.tag}.csv")
     by_metric.to_csv(res / f"explain_by_metric{args.tag}.csv")
     pd.DataFrame(examples).to_json(res / f"explain_examples{args.tag}.json", orient="records", indent=1)
+    tests = paired_tests(per)
+    tests.to_csv(res / f"explain_paired_tests{args.tag}.csv", index=False)
+    print(tests.to_string(index=False))
     print("\nMean over metrics and CVEs (lower is better for every row except top_in_lexicon):")
     print(summary.round(4).to_string())
 
