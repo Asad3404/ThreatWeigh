@@ -11,3 +11,4 @@ data/keybert/*.json
 models/**/*.pt
 models/**/*.safetensors
 models/**/*.bin
+logs/
