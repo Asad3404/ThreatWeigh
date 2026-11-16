@@ -1,0 +1,3 @@
+| model | seeds | AV | AC | PR | UI | S | C | I | A | mean acc % | mean macro-F1 % | score MSE | score MAE | severity acc % |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| TF-IDF + LogReg [temporal_budget] | 1 | 89.5 | 97.0 | 73.7 | 91.1 | 96.5 | 82.2 | 82.5 | 84.7 | 87.15 | 71.64 | 2.845 | 1.033 | 63.32 |

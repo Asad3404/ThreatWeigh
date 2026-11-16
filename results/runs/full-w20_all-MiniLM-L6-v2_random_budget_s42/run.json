@@ -1,0 +1,90 @@
+{
+  "run": "full-w20_all-MiniLM-L6-v2_random_budget_s42",
+  "variant": "full",
+  "encoder": "sentence-transformers/all-MiniLM-L6-v2",
+  "seed": 42,
+  "split": "random",
+  "profile": "budget",
+  "train_cfg": {
+    "lr": 2e-05,
+    "batch_size": 16,
+    "eval_batch_size": 128,
+    "epochs": 3,
+    "patience": 2,
+    "weight_decay": 0.01,
+    "max_train": 4000,
+    "max_val": 1000,
+    "max_test": null,
+    "num_threads": 4
+  },
+  "symbolic": {
+    "weight_both": 20.0,
+    "weight_one": 1,
+    "weight_none": 0,
+    "offset": 1,
+    "eps": 1e-08
+  },
+  "n_train": 4000,
+  "n_val": 1000,
+  "n_test": 13743,
+  "device": "cpu",
+  "metrics": [
+    {
+      "metric": "av",
+      "best_epoch": 2,
+      "val_acc": 0.868,
+      "test_acc": 0.8775376555337263,
+      "minutes": 5.71
+    },
+    {
+      "metric": "ac",
+      "best_epoch": 2,
+      "val_acc": 0.945,
+      "test_acc": 0.9420796041621189,
+      "minutes": 5.62
+    },
+    {
+      "metric": "pr",
+      "best_epoch": 2,
+      "val_acc": 0.798,
+      "test_acc": 0.7988066652113803,
+      "minutes": 5.73
+    },
+    {
+      "metric": "ui",
+      "best_epoch": 3,
+      "val_acc": 0.907,
+      "test_acc": 0.9072982609328385,
+      "minutes": 6.04
+    },
+    {
+      "metric": "s",
+      "best_epoch": 3,
+      "val_acc": 0.954,
+      "test_acc": 0.9567052317543476,
+      "minutes": 5.8
+    },
+    {
+      "metric": "c",
+      "best_epoch": 2,
+      "val_acc": 0.841,
+      "test_acc": 0.8441388343156516,
+      "minutes": 5.51
+    },
+    {
+      "metric": "i",
+      "best_epoch": 3,
+      "val_acc": 0.864,
+      "test_acc": 0.8561449465182275,
+      "minutes": 5.44
+    },
+    {
+      "metric": "a",
+      "best_epoch": 2,
+      "val_acc": 0.869,
+      "test_acc": 0.8752819617259696,
+      "minutes": 5.51
+    }
+  ],
+  "total_minutes": 45.37
+}
