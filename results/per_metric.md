@@ -8,6 +8,14 @@
 | ThreatWeigh (full) [random_budget] | C | 84.31 | 83.79 | 80.80 | 82.15 |
 | ThreatWeigh (full) [random_budget] | I | 85.62 | 86.72 | 83.70 | 85.00 |
 | ThreatWeigh (full) [random_budget] | A | 87.07 | 81.81 | 59.91 | 60.86 |
+| SBERT (mean pooling) [random_budget] | AV | 87.76 | 74.22 | 54.35 | 60.15 |
+| SBERT (mean pooling) [random_budget] | AC | 94.51 | 92.32 | 55.89 | 59.06 |
+| SBERT (mean pooling) [random_budget] | PR | 79.34 | 74.15 | 64.20 | 67.27 |
+| SBERT (mean pooling) [random_budget] | UI | 91.49 | 90.95 | 90.16 | 90.53 |
+| SBERT (mean pooling) [random_budget] | S | 95.67 | 95.50 | 89.67 | 92.25 |
+| SBERT (mean pooling) [random_budget] | C | 84.19 | 83.49 | 80.89 | 82.08 |
+| SBERT (mean pooling) [random_budget] | I | 85.75 | 87.23 | 83.61 | 85.12 |
+| SBERT (mean pooling) [random_budget] | A | 87.06 | 80.49 | 59.27 | 59.64 |
 | TF-IDF + LogReg [random_budget] | AV | 88.28 | 82.39 | 47.18 | 51.39 |
 | TF-IDF + LogReg [random_budget] | AC | 95.10 | 95.14 | 60.52 | 66.01 |
 | TF-IDF + LogReg [random_budget] | PR | 81.05 | 80.18 | 66.57 | 70.68 |
