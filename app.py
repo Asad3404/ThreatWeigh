@@ -113,7 +113,8 @@ with tab_pred:
                 for m, r in p["metrics"].items():
                     st.markdown(f"**{m.upper()} → {r['label']} ({LABEL_NAMES[m][r['label']]})**  ",
                                 unsafe_allow_html=True)
-                    st.markdown(f"<div style='line-height:1.9'>{highlight(text.strip(), r['words'])}</div>",
+                    st.markdown(f"<div style='line-height:1.9; margin-bottom:18px'>"
+                                f"{highlight(text.strip(), r['words'])}</div>",
                                 unsafe_allow_html=True)
 
 # ---------------------------------------------------------- Model results ---
@@ -126,12 +127,12 @@ with tab_res:
                 st.caption(note)
             st.dataframe(pd.read_csv(p), hide_index=True, use_container_width=True)
 
-    st.info("All neural models were trained on the same 6,000-row stratified training subsample for 4 epochs on a "
-            "CPU (see README → Compute budget) and tested on the full 13,745-row test split. "
+    st.info("All neural models were trained on the same 4,000-row stratified training subsample for up to 3 epochs "
+            "on a CPU with one seed (see README → Compute budget) and tested on the full 13,743-row test split. "
             "Numbers are NOT comparable to the paper's (≈96.2% mean accuracy on full data).")
     for fig in ["fig_main_accuracy.png", "fig_ablation.png"]:
         if (RES / fig).exists():
-            st.image(str(RES / fig))
+            st.image(str(RES / fig), width=820)
     show("main_comparison", "Main comparison (test accuracy %)", "mean ± std over seeds where >1 seed")
     show("ablation", "Ablation")
     show("significance_full_vs_sbert", "ThreatWeigh vs plain SBERT: paired bootstrap 95% CI + McNemar")

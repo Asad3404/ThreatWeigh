@@ -230,12 +230,14 @@ def make_figures(agg: pd.DataFrame, cfg, sfx: str) -> None:
     res = project_path(cfg["paths"]["results_dir"])
     g = agg.set_index("group")
     # 1. per-metric accuracy dot plot, one row per metric, one colour per model
-    models = [(f"tfidf-lr_{sfx}", "TF-IDF + LogReg"), (f"cls_distilbert-base-uncased_{sfx}", "DistilBERT"),
-              (f"mean_all-MiniLM-L6-v2_{sfx}", "SBERT (mean pooling)"),
-              (f"full_all-MiniLM-L6-v2_{sfx}", "ThreatWeigh")]
-    models = [(k, n, c) for (k, n), c in zip(models, SERIES) if k in g.index]
+    # colour is fixed per model (never by position), so a missing model never repaints the others
+    models = [(f"tfidf-lr_{sfx}", "TF-IDF + LogReg", SERIES[2]),
+              (f"cls_distilbert-base-uncased_{sfx}", "DistilBERT", SERIES[3]),
+              (f"mean_all-MiniLM-L6-v2_{sfx}", "SBERT (mean pooling)", SERIES[1]),
+              (f"full_all-MiniLM-L6-v2_{sfx}", "ThreatWeigh", SERIES[0])]
+    models = [(k, n, c) for k, n, c in models if k in g.index]
     if models:
-        fig, ax = plt.subplots(figsize=(8, 4.6), dpi=150, facecolor=SURFACE)
+        fig, ax = plt.subplots(figsize=(8, 5.0), dpi=150, facecolor=SURFACE)
         _style(ax)
         ys = np.arange(len(METRICS))[::-1]
         offs = np.linspace(-0.24, 0.24, len(models)) if len(models) > 1 else [0]
@@ -247,9 +249,10 @@ def make_figures(agg: pd.DataFrame, cfg, sfx: str) -> None:
                         label=f"{name}  (mean {100 * g.loc[k, 'mean_accuracy_mean']:.1f}%)")
         ax.set_yticks(ys, [m.upper() for m in METRICS], color=INK)
         ax.set_xlabel("Test accuracy (%)", color=INK2)
-        ax.set_title("Per-metric test accuracy (13.7k test CVEs; bars = ±1 std over seeds)",
-                     color=INK, loc="left", fontsize=11)
-        ax.legend(frameon=False, fontsize=8.5, loc="lower left", labelcolor=INK)
+        ax.set_title("Per-metric test accuracy on 13.7k test CVEs (error bars = ±1 std when >1 seed)",
+                     color=INK, loc="left", fontsize=10.5, pad=34)
+        ax.legend(frameon=False, fontsize=8.5, loc="lower left", bbox_to_anchor=(0, 1.0), ncol=2,
+                  labelcolor=INK, borderaxespad=0.2)
         fig.tight_layout()
         fig.savefig(res / "fig_main_accuracy.png", facecolor=SURFACE)
         plt.close(fig)
