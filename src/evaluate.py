@@ -305,7 +305,8 @@ def build_tables(cfg, profile_filter: str = "budget") -> dict[str, pd.DataFrame]
     from src.data import load_split
 
     rd = runs_dir(cfg)
-    runs = sorted(p.name for p in rd.iterdir() if (p / "preds_av.npz").exists()
+    # only COMPLETE runs (run.json is written after the last metric) and no smoke tests
+    runs = sorted(p.name for p in rd.iterdir() if (p / "run.json").exists()
                   and not p.name.startswith(("quick_", "smoke_"))) if rd.exists() else []
     test_random = load_split("test", cfg)
     try:

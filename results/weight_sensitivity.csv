@@ -1,0 +1,2 @@
+model,seeds,AV,AC,PR,UI,S,C,I,A,mean acc %,mean macro-F1 %,score MSE,score MAE,severity acc %
+ThreatWeigh (full) [random_budget],1,87.8,94.4,79.9,91.5,95.7,84.3,85.6,87.1,88.28,74.76,2.252,0.903,67.42
