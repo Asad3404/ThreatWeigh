@@ -37,8 +37,7 @@ Key results (one training seed, 4,000 training rows on a CPU, 13,743 test CVEs):
 These are observations at a small compute budget, not the paper's full-scale setting.
 
 ⏱️ Chapters
-0:00 Intro
-0:06 The problem: CVE text → CVSS score
+0:00 Intro: from CVE text to a CVSS score
 0:17 Data pipeline and label leakage
 0:29 Model architecture
 0:46 How words get weighed
