@@ -41,3 +41,4 @@ python video/build_video.py
 ```
 
 Requires trained models in `models/` (`bash scripts/run_all.sh`), Node with Playwright, and ffmpeg.
+- [youtube/](youtube/) – YouTube upload template: titles, description with chapters, tags, thumbnail.

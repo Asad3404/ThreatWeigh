@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>ThreatWeigh thumbnail</title>
+<style>
+  :root { --bg: #0f1420; --panel: #171e2e; --line: #2a3347; --ink: #f0efec; --ink2: #b9bccb; --muted: #7d8399;
+          --blue: #3987e5; --aqua: #1faf7d; --orange: #e5703f; --red: #e66767; --yellow: #e6a317; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1280px; height: 720px; overflow: hidden; background: var(--bg); color: var(--ink);
+               font-family: "Inter", "Helvetica Neue", Arial, sans-serif; }
+  body { position: relative; padding: 64px 70px; }
+  .glow { position: absolute; right: -180px; top: -180px; width: 720px; height: 720px; border-radius: 50%;
+          background: radial-gradient(circle, rgba(57,135,229,.28), rgba(57,135,229,0) 65%); }
+  .left { position: absolute; left: 64px; top: 112px; width: 560px; }
+  .shield { font-size: 74px; line-height: 1; }
+  h1 { font-size: 86px; font-weight: 900; letter-spacing: -2.5px; line-height: 1; margin-top: 16px; }
+  .tag { font-size: 40px; font-weight: 800; line-height: 1.15; margin-top: 26px; }
+  .tag em { font-style: normal; color: var(--blue); }
+  .pills { margin-top: 34px; display: flex; flex-wrap: wrap; gap: 12px; }
+  .pill { font-size: 22px; font-weight: 700; padding: 10px 16px; border-radius: 10px; background: #22304a; color: var(--ink2); }
+  .card { position: absolute; right: 56px; top: 118px; width: 540px; background: var(--panel); border: 2px solid var(--line);
+          border-radius: 22px; padding: 30px 32px; box-shadow: 0 20px 60px rgba(0,0,0,.45); }
+  .cve { font-size: 27px; line-height: 1.55; color: var(--ink2); }
+  .w11 { background: var(--blue); color: #fff; padding: 1px 7px; border-radius: 6px; font-weight: 800; }
+  .w2 { background: rgba(31,175,125,.85); color: #fff; padding: 1px 7px; border-radius: 6px; font-weight: 700; }
+  .score { margin-top: 26px; display: flex; align-items: baseline; gap: 18px; }
+  .big { font-size: 104px; font-weight: 900; line-height: 1; }
+  .sev { font-size: 46px; font-weight: 900; color: var(--orange); letter-spacing: 1px; }
+  .vec { margin-top: 12px; font-family: "DejaVu Sans Mono", monospace; font-size: 15.5px; color: var(--muted); }
+  .legend { margin-top: 18px; font-size: 18px; color: var(--muted); }
+  .sw { display: inline-block; width: 14px; height: 14px; border-radius: 3px; vertical-align: -1px; margin-right: 6px; }
+</style>
+</head>
+<body>
+  <div class="glow"></div>
+  <div class="left">
+    <div class="shield">🛡️</div>
+    <h1>ThreatWeigh</h1>
+    <div class="tag">Vulnerability text<br>→ <em>CVSS score</em>, explained</div>
+    <div class="pills">
+      <span class="pill">Neuro-symbolic NLP</span>
+      <span class="pill">Sentence-BERT</span>
+      <span class="pill">Explainable AI</span>
+      <span class="pill">Live demo</span>
+    </div>
+  </div>
+  <div class="card">
+    <!-- real example from the video: AV-model symbolic weights (11 = blue, 2 = green) and the real prediction -->
+    <div class="cve">“A race condition in the <span class="w11">kernel</span> <span class="w11">driver</span> allows
+      <span class="w2">local</span> <span class="w2">users</span> to gain <span class="w2">root</span>
+      <span class="w2">privileges</span> via a crafted <span class="w11">ioctl</span> call.”</div>
+    <div class="score"><span class="big">7.0</span><span class="sev">HIGH</span></div>
+    <div class="vec">CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H</div>
+    <div class="legend"><span class="sw" style="background:var(--blue)"></span>weight 11 &nbsp;
+      <span class="sw" style="background:var(--aqua)"></span>weight 2 &nbsp;(Attack Vector model)</div>
+  </div>
+</body>
+</html>
